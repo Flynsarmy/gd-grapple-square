@@ -18,9 +18,7 @@ mass = 7.65306
 gravity_scale = 1.0
 
 [node name="Position2D" type="Position2D" parent="."]
-position = Vector2( 350, 250 )
-
-[node name="Terrain" parent="." instance=ExtResource( 3 )]
+position = Vector2( 107, 173 )
 
 [node name="Grapple" type="DampedSpringJoint2D" parent="."]
 node_a = NodePath("../Player")
@@ -30,3 +28,14 @@ stiffness = 64.0
 damping = 16.0
 
 [node name="GrappleLine" parent="." instance=ExtResource( 4 )]
+
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2( 360, 240 )
+current = true
+
+[node name="Terrains" type="Node" parent="."]
+
+[node name="Terrain" parent="Terrains" instance=ExtResource( 3 )]
+
+[node name="Terrain2" parent="Terrains" instance=ExtResource( 3 )]
+position = Vector2( 746, 0 )

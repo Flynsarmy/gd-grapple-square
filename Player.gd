@@ -5,14 +5,10 @@ signal hit
 
 
 # Declare member variables here. Examples:
-var screen_size: Vector2 # Size of the game window.
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	screen_size = get_viewport_rect().size
-	# self.gravity_scale = 0
-	
 	hide()
 	
 #func _input(event: InputEvent):
