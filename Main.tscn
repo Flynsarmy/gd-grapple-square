@@ -14,7 +14,7 @@ anchor_bottom = 1.0
 color = Color( 1, 0.94902, 0.858824, 1 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-mass = 7.65306
+mass = 0.56
 gravity_scale = 1.0
 
 [node name="Position2D" type="Position2D" parent="."]
@@ -22,10 +22,8 @@ position = Vector2( 107, 173 )
 
 [node name="Grapple" type="DampedSpringJoint2D" parent="."]
 node_a = NodePath("../Player")
-bias = 0.9
 disable_collision = false
 stiffness = 64.0
-damping = 16.0
 
 [node name="GrappleLine" parent="." instance=ExtResource( 4 )]
 

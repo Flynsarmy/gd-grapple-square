@@ -19,7 +19,7 @@ var camera_offset: int # How far beside the player will the camera be at all tim
 var grapple_target: Object = null # The object our grapple hit when we fired it out.
 var grapple_target_position: Vector2 = Vector2(0, 0)
 var terrain: Resource = preload("res://Terrain.tscn")
-var terrain_placed: bool = false
+var terrain_placed: bool = false # Whether new world pieces were placed last frame
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -47,25 +47,27 @@ func _process(delta: float):
 
 			grapple.length = distancelength
 			grapple.global_rotation_degrees = ray.global_rotation_degrees - 90
-			grapple.rest_length = distancelength * 0.75
+			grapple.rest_length = distancelength# * 0.75
 
 			grapple.node_b = grapple_target.get_path()
-			player.gravity_scale = 1
 			
 	# On grapple swing
 	if Input.is_action_pressed("grapple"):
 		grapple.global_position = player.global_position
 		grapple_line.visible = true
 		grapple_line.end_pos = player.global_position
-		grapple.rest_length = clamp(grapple.rest_length - 1, 5, grapple.rest_length)
+		grapple.rest_length = clamp(grapple.rest_length - 3, 5, grapple.rest_length)
 
 	# When not grappled
-	else:
+	if Input.is_action_just_released("grapple"):
 		grapple_line.visible = false
 		grapple_target = null
 		grapple.node_b = grapple.node_a
-		player.gravity_scale = 5
 		
+		# Zero the player's vertical movement
+		if player.linear_velocity.y < 0:
+			player.linear_velocity.y = -200
+	
 	# Spawn more terrain if we need to
 	if int(player.position.x) % int(screen_size.x) < 50:
 		if not terrain_placed:

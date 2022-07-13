@@ -3,7 +3,9 @@ extends StaticBody2D
 
 # Declare member variables here. Examples:
 var obstacle: Resource = preload("res://Obstacle.tscn")
-var max_obstacles = 1
+var max_obstacles: int = 10
+var min_scale: float = 0.1
+var max_scale: float = 1.5
 
 
 # Called when the node enters the scene tree for the first time.
@@ -16,8 +18,18 @@ func _ready():
 	
 	for i in range(max_obstacles):
 		var Obstacle: StaticBody2D = obstacle.instance()
+		Obstacle.scale = Vector2(rand_range(min_scale, max_scale), rand_range(min_scale, max_scale))
 		Obstacle.global_position = self.global_position + Vector2(randi() % int(screen_size.x), top_offset)
-		Obstacle.scale = Vector2(rand_range(0.1, 5.0), rand_range(0.1, 5.0))
+		$Obstacles.add_child(Obstacle)
+		
+	for i in range(max_obstacles):
+		var Obstacle: StaticBody2D = obstacle.instance()
+		Obstacle.scale = Vector2(rand_range(min_scale, max_scale), rand_range(min_scale, max_scale))
+		# Don't know how to grab the Obstacle.ColorRect's base height, so hardcode it for now
+		Obstacle.global_position = \
+			self.global_position + \
+			Vector2(randi() % int(screen_size.x), bottom_offset) - \
+			Vector2(0, 40 * Obstacle.scale.y)
 		$Obstacles.add_child(Obstacle)
 
 

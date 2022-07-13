@@ -11,21 +11,14 @@ signal hit
 func _ready():
 	hide()
 	
-#func _input(event: InputEvent):
-#	if event.is_action_pressed("grapple"):
-#		$Chain.shoot(Vector2(1, -1))
-#	elif event.is_action_released("grapple"):
-#		$Chain.release()
-#	pass
-	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float):
-	# $Chain.global_rotation = 0
 	pass
 
 func start(pos: Vector2):
 	self.position = pos
 	self.show()
+	self.linear_velocity.x = 200
 	# $CollisionShape2D.disabled = false
 
 
