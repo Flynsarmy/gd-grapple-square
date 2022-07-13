@@ -74,12 +74,10 @@ func _process(delta: float):
 			terrain_placed = true
 			var Terrain: StaticBody2D = terrain.instance()
 			Terrain.global_position = Vector2(int(player.global_position.x) / int(screen_size.x) * int(screen_size.x) + screen_size.x, 0)
-			print("Adding terrain at ", Terrain.global_position)
 			$Terrains.add_child(Terrain)
 			
 			if $Terrains.get_child_count() > 5:
 				$Terrains.get_child(0).queue_free()
-				print("Removing old scene")
 	else:
 		terrain_placed = false
 		
