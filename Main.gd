@@ -5,8 +5,6 @@ extends Node2D
 # https://www.youtube.com/watch?v=fms3gwZkTLo
 
 # Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
 onready var player: RigidBody2D = $Player
 onready var camera: Camera2D = $Camera
 onready var grapple: DampedSpringJoint2D = $Grapple
