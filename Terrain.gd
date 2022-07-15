@@ -3,7 +3,7 @@ extends StaticBody2D
 
 # Declare member variables here. Examples:
 onready var Obstacles: Node = $Obstacles
-var obstacle: Resource = preload("res://Obstacle.tscn")
+var res_obstacle: Resource = preload("res://Obstacle.tscn")
 var max_obstacles: int = 6
 var min_scale_w: float = 1
 var max_scale_w: float = 3
@@ -50,7 +50,7 @@ func _ready():
 
 # Create a new piece of terrain and add it to the Obstacles container
 func create_obstacle(local_min_scale_w: float, local_max_scale_w: float, local_min_scale_h: float, local_max_scale_h: float) -> StaticBody2D:
-	var Obstacle: StaticBody2D = obstacle.instance()
+	var Obstacle: StaticBody2D = res_obstacle.instance()
 	Obstacle.scale = Vector2(rand_range(local_min_scale_w, local_max_scale_w), rand_range(local_min_scale_h, local_max_scale_h))
 	Obstacles.add_child(Obstacle)
 	return Obstacle
