@@ -11,12 +11,17 @@ var screen_size: Vector2 # Size of the game window.
 var camera_offset: float # How far beside the player will the camera be at all times.
 var terrain: Resource = preload("res://Terrain.tscn")
 var terrain_placed: bool = false # Whether new world pieces were placed last frame
+var old_color: Color = Color(0.949, 0.455, 0.408)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	screen_size = get_viewport_rect().size
 	camera_offset = screen_size.x / 4.0
 	grapple.node_a = player.get_path()
+	
+	# Set the default color of our terrain
+	for child in $Terrains.get_children():
+		child.set_colors(old_color)
 	start_game()
 	
 func start_game():
@@ -46,21 +51,22 @@ func _process(_delta: float):
 	
 	# Spawn more terrain if we need to
 	if int(player.position.x) % int(screen_size.x) < 50:
-		# TODO: REMOVE THIS. TESTING COLOR TWEENING
-		var new_color = Color(randf(), randf(), randf())
-		for child in $Terrains.get_children():
-			if child.has_method("tween_colors"):
-				child.tween_colors(new_color, 2.0)
-
 		if not terrain_placed:
 			terrain_placed = true
 			var Terrain: StaticBody2D = terrain.instance()
-			Terrain.global_position = Vector2(int(player.global_position.x) / int(screen_size.x) * int(screen_size.x) + screen_size.x, 0)
+			Terrain.global_position = Vector2(player.global_position.x / screen_size.x * screen_size.x + screen_size.x, 0)
 			$Terrains.add_child(Terrain)
+			Terrain.set_colors(old_color)
 			
 			if $Terrains.get_child_count() > 5:
 				$Terrains.get_child(0).queue_free()
 				
+		# TODO: REMOVE THIS. TESTING COLOR TWEENING
+#		var new_color = Color(randf(), randf(), randf())
+#		for child in $Terrains.get_children():
+#			if child.has_method("tween_colors"):
+#				child.tween_colors(new_color, 2.0)
+#		old_color = new_color
 	else:
 		terrain_placed = false
 		

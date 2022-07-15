@@ -31,7 +31,6 @@ func _process(_delta: float):
 func begin_grapple(gsource: Object, gtarget: Object, gtarget_position: Vector2, angle: float) -> void:
 	source = gsource
 	self.global_position = gsource.global_position
-#	grapple_target = ray.get_collider()
 	target_position = gtarget_position
 	var distancelength: float = target_position.distance_to(self.global_position)
 

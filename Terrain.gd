@@ -47,6 +47,18 @@ func _ready():
 			self.global_position + \
 			Vector2(randi() % int(screen_size.x), bottom_offset) - \
 			Vector2(0, 40.0 * Obstacle.scale.y)
+			
+	# Background obstacles
+#	var BGRect: ColorRect = ColorRect.new()
+#	BGRect.set_size(
+#		Vector2(
+#			rand_range(screen_size.x * 0.2, screen_size.x * 0.5),
+#			rand_range(screen_size.x * 0.3, screen_size.y * 0.7)
+#		)
+#	)
+#	BGRect.color = Color(0.2, 0.2, 0.2)
+#	BGRect.show_behind_parent = true
+#	$Backgrounds.add_child(BGRect)
 
 # Create a new piece of terrain and add it to the Obstacles container
 func create_obstacle(local_min_scale_w: float, local_max_scale_w: float, local_min_scale_h: float, local_max_scale_h: float) -> StaticBody2D:
@@ -54,6 +66,13 @@ func create_obstacle(local_min_scale_w: float, local_max_scale_w: float, local_m
 	Obstacle.scale = Vector2(rand_range(local_min_scale_w, local_max_scale_w), rand_range(local_min_scale_h, local_max_scale_h))
 	Obstacles.add_child(Obstacle)
 	return Obstacle
+	
+func set_colors(new_color: Color) -> void:
+	$Ceiling.modulate = new_color
+	$Floor.modulate = new_color
+	# Obstacles
+	for obstacle in $Obstacles.get_children():
+		obstacle.get_node("ColorRect").modulate = new_color
 	
 func tween_colors(new_color: Color, duration: float) -> void:
 	# Floor and ceiling

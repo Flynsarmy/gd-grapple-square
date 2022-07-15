@@ -20,6 +20,8 @@ shape = SubResource( 1 )
 position = Vector2( 362, 431.5 )
 shape = SubResource( 4 )
 
+[node name="Backgrounds" type="Node" parent="."]
+
 [node name="Obstacles" type="Node" parent="."]
 
 [node name="Tween" type="Tween" parent="."]
