@@ -6,35 +6,32 @@
 extents = Vector2( 371.125, 21.4375 )
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 374, 19 )
+extents = Vector2( 374, 72.5 )
 
 [node name="Terrain" type="StaticBody2D"]
 collision_mask = 6
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_horizontal_guides_": [ 18.0 ]
-}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 356.875, -3.4375 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2( 368, 485 )
+position = Vector2( 362, 431.5 )
 shape = SubResource( 4 )
 
-[node name="Floor" type="ColorRect" parent="."]
-margin_left = -6.0
-margin_top = 466.0
-margin_right = 740.0
-margin_bottom = 504.0
-color = Color( 0.94902, 0.454902, 0.407843, 1 )
+[node name="Obstacles" type="Node" parent="."]
+
+[node name="Tween" type="Tween" parent="."]
 
 [node name="Ceiling" type="ColorRect" parent="."]
 margin_left = -16.0
 margin_top = -26.0
 margin_right = 730.0
 margin_bottom = 18.0
-color = Color( 0.94902, 0.454902, 0.407843, 1 )
 
-[node name="Obstacles" type="Node" parent="."]
+[node name="Floor" type="ColorRect" parent="."]
+margin_left = -12.0
+margin_top = 359.0
+margin_right = 734.0
+margin_bottom = 504.0

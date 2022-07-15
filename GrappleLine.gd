@@ -6,7 +6,7 @@ export var end_pos: Vector2 = Vector2()
 func _ready() -> void:
 	self.visible = false
 
-func _process(delta: float):
+func _process(_delta: float):
 	if self.visible:
 		add_point(start_pos)
 		add_point(end_pos, 1)

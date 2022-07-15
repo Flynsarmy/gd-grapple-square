@@ -13,7 +13,7 @@ onready var grapple_line: Line2D = $GrappleLine
 
 var score: int
 var screen_size: Vector2 # Size of the game window.
-var camera_offset: int # How far beside the player will the camera be at all times.
+var camera_offset: float # How far beside the player will the camera be at all times.
 var grapple_target: Object = null # The object our grapple hit when we fired it out.
 var grapple_target_position: Vector2 = Vector2(0, 0)
 var terrain: Resource = preload("res://Terrain.tscn")
@@ -22,14 +22,14 @@ var terrain_placed: bool = false # Whether new world pieces were placed last fra
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	screen_size = get_viewport_rect().size
-	camera_offset = screen_size.x / 4
+	camera_offset = screen_size.x / 4.0
 	start_game()
 	
 func start_game():
 	score = 0
 	player.start($Position2D.position)
 	
-func _process(delta: float):
+func _process(_delta: float):
 	if grapple_target:
 		grapple_line.start_pos = grapple_target_position
 
@@ -68,6 +68,12 @@ func _process(delta: float):
 	
 	# Spawn more terrain if we need to
 	if int(player.position.x) % int(screen_size.x) < 50:
+		# TODO: REMOVE THIS. TESTING COLOR TWEENING
+		var new_color = Color(randf(), randf(), randf())
+		for child in $Terrains.get_children():
+			if child.has_method("tween_colors"):
+				child.tween_colors(new_color, 2.0)
+
 		if not terrain_placed:
 			terrain_placed = true
 			var Terrain: StaticBody2D = terrain.instance()
@@ -76,6 +82,7 @@ func _process(delta: float):
 			
 			if $Terrains.get_child_count() > 5:
 				$Terrains.get_child(0).queue_free()
+				
 	else:
 		terrain_placed = false
 		
