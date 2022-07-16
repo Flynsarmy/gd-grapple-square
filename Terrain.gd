@@ -35,31 +35,20 @@ func _ready():
 			Vector2(0, 40.0 * Obstacle.scale.y)
 		
 	# Top big terrain
-	if randi() % 4 == 0:
-		var Obstacle: StaticBody2D = create_obstacle(3.0, 5.0, 3.0, 5.0)
-		Obstacle.global_position = self.global_position + Vector2(randi() % int(screen_size.x), top_offset)
-		
-	# Bottom big terrain
-	if randi() % 4 == 0:
-		var Obstacle: StaticBody2D = create_obstacle(3.0, 5.0, 3.0, 5.0)
-		# Don't know how to grab the Obstacle.ColorRect's base height, so hardcode it for now
-		Obstacle.global_position = \
-			self.global_position + \
-			Vector2(randi() % int(screen_size.x), bottom_offset) - \
-			Vector2(0, 40.0 * Obstacle.scale.y)
+#	if randi() % 4 == 0:
+#		var Obstacle: StaticBody2D = create_obstacle(3.0, 5.0, 3.0, 5.0)
+#		Obstacle.global_position = self.global_position + Vector2(randi() % int(screen_size.x), top_offset)
+#
+#	# Bottom big terrain
+#	else:
+#		if randi() % 4 == 0:
+#			var Obstacle: StaticBody2D = create_obstacle(3.0, 5.0, 3.0, 5.0)
+#			# Don't know how to grab the Obstacle.ColorRect's base height, so hardcode it for now
+#			Obstacle.global_position = \
+#				self.global_position + \
+#				Vector2(randi() % int(screen_size.x), bottom_offset) - \
+#				Vector2(0, 40.0 * Obstacle.scale.y)
 			
-	# Background obstacles
-#	var BGRect: ColorRect = ColorRect.new()
-#	BGRect.set_size(
-#		Vector2(
-#			rand_range(screen_size.x * 0.2, screen_size.x * 0.5),
-#			rand_range(screen_size.x * 0.3, screen_size.y * 0.7)
-#		)
-#	)
-#	BGRect.color = Color(0.2, 0.2, 0.2)
-#	BGRect.show_behind_parent = true
-#	$Backgrounds.add_child(BGRect)
-
 # Create a new piece of terrain and add it to the Obstacles container
 func create_obstacle(local_min_scale_w: float, local_max_scale_w: float, local_min_scale_h: float, local_max_scale_h: float) -> StaticBody2D:
 	var Obstacle: StaticBody2D = res_obstacle.instance()
