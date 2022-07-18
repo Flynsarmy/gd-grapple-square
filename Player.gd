@@ -33,14 +33,11 @@ func _physics_process(delta: float) -> void:
 		return
 
 	if grappling:
-		# velocity += -GRAVITY * GRAVITY_DIR * delta
-		
 		var angle: float = rad2deg(grapple_target_position.angle_to_point(self.global_position)) + 180
 		
 		var percent: float = (angle - 5.0) * 100.0 / 50.0
 
 		velocity.x = grapple_velocity.x * percent * 0.01
-		#velocity.y += -GRAVITY * GRAVITY_DIR.y * delta * 2
 	else:
 		velocity += GRAVITY * GRAVITY_DIR * delta
 		
@@ -58,7 +55,7 @@ func _physics_process(delta: float) -> void:
 		velocity -= collision.remainder
 
 
-func _on_Main_begin_grapple(gsource: Object, gtarget: Object, gtarget_position: Vector2, angle: float) -> void:
+func _on_GrappleHook_begin_grapple(_gsource: Object, _gtarget: Object, gtarget_position: Vector2, _angle: float) -> void:
 	grapple_target_position = gtarget_position
 	velocity.x = max(3.0, velocity.x)
 	velocity.y = -GRAVITY * GRAVITY_DIR.y * 0.5
@@ -69,7 +66,7 @@ func _on_Main_begin_grapple(gsource: Object, gtarget: Object, gtarget_position: 
 	has_grappled = true
 
 
-func _on_Main_end_grapple() -> void:
+func _on_GrappleHook_end_grapple() -> void:
 	velocity.y = GRAVITY * GRAVITY_DIR.y * 0.01
 	
 	rotation_speed = MAX_ROTATION_SPEED * (1 - min(grapple_time, 0.8))
