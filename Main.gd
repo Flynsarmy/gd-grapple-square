@@ -12,19 +12,10 @@ var default_color: Color = Color(0.949, 0.455, 0.408)
 func _ready():
 	screen_size = get_viewport_rect().size
 	camera_offset = screen_size.x / 4.0
-	
+
 	# Set the default color of our terrain
 	$Terrains/Terrain.set_colors(default_color)
-		
-#	var BGRect: ColorRect = ColorRect.new()
-#	BGRect.color = Color(0.588, 0.588, 0.588, 0.392)
-#	BGRect.rect_size = Vector2(500, 200)
-#	BGRect.set_global_position($Position2D.global_position)
-#	$ParallaxBackground/ParallaxLayer2.add_child(BGRect)
-		
-	start_game()
-	
-func start_game():
+
 	player.global_position = $Position2D.global_position
 	
 func _process(_delta: float):#

@@ -21,7 +21,7 @@ func _get_configuration_warning() -> String:
 	var warnings: PoolStringArray = PoolStringArray()
 
 	if not ray_path: 
-		warnings.append("%s is missing the ray node as its child" % name)
+		warnings.append("%s must have its ray property set for it to function correctly." % name)
 
 	return warnings.join("\n")
 

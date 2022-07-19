@@ -3,7 +3,7 @@ extends StaticBody2D
 
 # Declare member variables here. Examples:
 onready var Obstacles: Node = $Obstacles
-var res_obstacle: Resource = preload("res://Obstacle.tscn")
+var res_obstacle: Resource = preload("res://Map/Obstacle.tscn")
 var max_obstacles: int = 6               # Num of terrain pieces to spawn on top and on bottom
 var min_scale: Vector2 = Vector2(1, 0.3) # Min scale of normal-sized terrain
 var max_scale: Vector2 = Vector2(3, 0.8) # Max scale of normal-sized terrain

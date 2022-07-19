@@ -20,10 +20,6 @@ var grapple_target_position: Vector2 # Location on terrain we grappled
 var grapple_velocity: Vector2        # Velocity we were travelling as the grapple occurred
 var grapple_time: float = 0          # How long we were grappling for
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
 func _process(delta: float) -> void:
 	if grappling:
 		grapple_time += delta
