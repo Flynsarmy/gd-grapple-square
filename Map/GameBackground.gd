@@ -2,7 +2,6 @@ extends ParallaxBackground
 
 
 # Declare member variables here. Examples:
-export(int) var width = 720
 export(int) var height = 480
 export(int) var num_blocks = 25
 export(Vector2) var min_size = Vector2(50, 50)
@@ -33,7 +32,8 @@ func _ready() -> void:
 		x_pos = rect.get_position().x + rect.get_size().x
 		BGContainer.add_child(rect)
 		
-	$ParallaxLayer2.motion_mirroring.x = max(max_x, x_pos)
+	var parallax_layer: ParallaxLayer = $ParallaxLayer2
+	parallax_layer.motion_mirroring.x = max(max_x, x_pos)
 	
 	x_pos = 0
 	max_x = 0
@@ -52,7 +52,8 @@ func _ready() -> void:
 		x_pos = rect.get_position().x + rect.get_size().x
 		FGContainer.add_child(rect)
 		
-	$ParallaxLayer3.motion_mirroring.x = max(max_x, x_pos)
+	parallax_layer = $ParallaxLayer3
+	parallax_layer.motion_mirroring.x = max(max_x, x_pos)
 	
 		
 func spawn_block(position: Vector2, color: Color) -> ColorRect:

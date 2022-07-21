@@ -3,7 +3,7 @@
 [ext_resource path="res://Map/Terrain.gd" type="Script" id=1]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 375.125, 22 )
+extents = Vector2( 375.125, 33 )
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 375, 72.5 )
@@ -14,7 +14,7 @@ collision_mask = 6
 script = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 374.875, -4 )
+position = Vector2( 374.875, 7 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
@@ -28,7 +28,7 @@ shape = SubResource( 4 )
 [node name="Ceiling" type="ColorRect" parent="."]
 margin_top = -26.0
 margin_right = 750.0
-margin_bottom = 18.0
+margin_bottom = 40.0
 
 [node name="Floor" type="ColorRect" parent="."]
 margin_top = 359.0
