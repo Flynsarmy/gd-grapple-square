@@ -17,3 +17,7 @@ func _on_btnSound_toggled(button_pressed: bool) -> void:
 func _on_btnPlay_pressed() -> void:
 	if get_tree().change_scene("res://Main.tscn") != OK:
 		print("An unexpected error occured when trying to switch to the Main scene")
+
+
+func _on_btnExit_pressed() -> void:
+	get_tree().quit()
