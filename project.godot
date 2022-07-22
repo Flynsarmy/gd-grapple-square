@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node2D",
+"class": "GSMain",
+"language": "GDScript",
+"path": "res://Main.gd"
+}, {
 "base": "StaticBody2D",
 "class": "GSTerrain",
 "language": "GDScript",
@@ -20,6 +25,7 @@ _global_script_classes=[ {
 "path": "res://addons/godot-git-plugin/git_api.gdns"
 } ]
 _global_script_class_icons={
+"GSMain": "",
 "GSTerrain": "",
 "GitAPI": ""
 }
@@ -27,7 +33,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Grapple Square"
-run/main_scene="res://UI/MainMenu.tscn"
+run/main_scene="res://Main.tscn"
 config/icon="res://icon.png"
 
 [debug]
@@ -84,4 +90,5 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
+environment/default_clear_color=Color( 1, 0.94902, 0.858824, 1 )
 environment/default_environment="res://default_env.tres"

@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Map/Terrain.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Levels/BlockWorld.gd" type="Script" id=3]
+
+[node name="Main" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 150, 240 )
+
+[node name="Terrains" type="Node" parent="."]
+
+[node name="Terrain" parent="Terrains" instance=ExtResource( 2 )]
