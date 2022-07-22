@@ -22,7 +22,6 @@ func _ready():
 	
 	background = GsGlobals.getStored("background")
 	$Terrains.get_parent().add_child(background)
-	print(background.scroll_base_offset)
 	
 func _process(_delta: float):#
 	# Switch to MainMenu on escape
