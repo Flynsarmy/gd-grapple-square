@@ -1,0 +1,149 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://assets/kenney_gameicons/Spritesheet/sheet_white1x.png" type="Texture" id=1]
+[ext_resource path="res://assets/Quantico/Quantico-Bold.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://UI/GameContinue.gd" type="Script" id=3]
+
+[sub_resource type="Theme" id=1]
+
+[sub_resource type="DynamicFont" id=2]
+size = 26
+font_data = ExtResource( 2 )
+
+[sub_resource type="Theme" id=3]
+
+[sub_resource type="DynamicFont" id=4]
+size = 26
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 1, 0.780392, 0.384314, 1 )
+
+[sub_resource type="Theme" id=6]
+
+[sub_resource type="DynamicFont" id=7]
+size = 60
+font_data = ExtResource( 2 )
+
+[sub_resource type="Theme" id=8]
+
+[sub_resource type="DynamicFont" id=9]
+size = 26
+font_data = ExtResource( 2 )
+
+[sub_resource type="Theme" id=10]
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 1 )
+region = Rect2( 400, 400, 50, 50 )
+
+[node name="GameContinue" type="CanvasLayer"]
+script = ExtResource( 3 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -223.0
+margin_top = -78.0
+margin_right = 223.0
+margin_bottom = 93.0
+color = Color( 0.572549, 0.231373, 0.690196, 1 )
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -147.0
+margin_top = -64.0
+margin_right = 147.0
+margin_bottom = -26.0
+theme = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
+text = "CONTINUE FROM HERE?"
+
+[node name="btnContinue" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -98.0
+margin_top = -2.0
+margin_right = 98.0
+margin_bottom = 76.0
+mouse_default_cursor_shape = 2
+theme = SubResource( 3 )
+custom_colors/font_color = Color( 0.572549, 0.231373, 0.690196, 1 )
+custom_fonts/font = SubResource( 4 )
+custom_styles/hover = SubResource( 5 )
+custom_styles/pressed = SubResource( 5 )
+custom_styles/normal = SubResource( 5 )
+text = "USE 10"
+
+[node name="lblTimer" type="Label" parent="."]
+margin_top = 38.0
+margin_right = 720.0
+margin_bottom = 125.0
+theme = SubResource( 6 )
+custom_colors/font_color = Color( 0.572549, 0.231373, 0.690196, 1 )
+custom_fonts/font = SubResource( 7 )
+text = "5"
+align = 1
+
+[node name="lblBestScore" type="Label" parent="."]
+margin_top = 101.0
+margin_right = 720.0
+margin_bottom = 139.0
+theme = SubResource( 8 )
+custom_colors/font_color = Color( 0.572549, 0.231373, 0.690196, 1 )
+custom_fonts/font = SubResource( 9 )
+text = "BEST SCORE: 0"
+align = 1
+
+[node name="lblYourScore" type="Label" parent="."]
+margin_top = 125.0
+margin_right = 720.0
+margin_bottom = 163.0
+theme = SubResource( 10 )
+custom_colors/font_color = Color( 0.572549, 0.231373, 0.690196, 1 )
+custom_fonts/font = SubResource( 9 )
+text = "YOUR SCORE: 0"
+align = 1
+
+[node name="btnClose" type="TextureButton" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -248.0
+margin_top = -128.0
+margin_right = -184.0
+margin_bottom = -64.0
+mouse_default_cursor_shape = 2
+texture_normal = SubResource( 11 )
+expand = true
+stretch_mode = 5
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="ColorRect2" type="ColorRect" parent="btnClose"]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color( 0.94902, 0.454902, 0.407843, 1 )
+
+[node name="ContinueTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="FlashTimer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[connection signal="pressed" from="btnContinue" to="." method="_on_btnContinue_pressed"]
+[connection signal="pressed" from="btnClose" to="." method="_on_btnClose_pressed"]
+[connection signal="timeout" from="ContinueTimer" to="." method="_on_ContinueTimer_timeout"]
+[connection signal="timeout" from="FlashTimer" to="." method="_on_FlashTimer_timeout"]

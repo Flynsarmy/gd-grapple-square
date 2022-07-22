@@ -17,3 +17,5 @@ current = true
 [node name="Terrains" type="Node" parent="."]
 
 [node name="Terrain" parent="Terrains" instance=ExtResource( 2 )]
+
+[connection signal="player_died" from="Player" to="." method="_on_Player_player_died"]

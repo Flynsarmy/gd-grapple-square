@@ -1,9 +1,12 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Player/GrappleHook.tscn" type="PackedScene" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 15, 15 )
+
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 15, 15 )
 
 [node name="Player" type="KinematicBody2D"]
@@ -16,9 +19,6 @@ margin_right = 15.0
 margin_bottom = 15.0
 color = Color( 0.278431, 0.796078, 0.737255, 1 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
-
 [node name="RayCast2D" type="RayCast2D" parent="."]
 rotation = -1.13446
 enabled = true
@@ -28,5 +28,14 @@ cast_to = Vector2( 1000, 0 )
 default_color = Color( 0.278431, 0.796078, 0.737255, 1 )
 ray_path = NodePath("../RayCast2D")
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="CollisionDetector" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionDetector"]
+shape = SubResource( 2 )
+
 [connection signal="begin_grapple" from="GrappleHook" to="." method="_on_GrappleHook_begin_grapple"]
 [connection signal="end_grapple" from="GrappleHook" to="." method="_on_GrappleHook_end_grapple"]
+[connection signal="body_entered" from="CollisionDetector" to="." method="_on_CollisionDetector_body_entered"]

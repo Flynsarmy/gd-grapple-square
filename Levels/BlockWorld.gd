@@ -1,12 +1,13 @@
 extends Node2D
 
-# Declare member variables here. Examples:
+onready var scn_continue: PackedScene = preload("res://UI/GameContinue.tscn")
 onready var player: KinematicBody2D = $Player
 onready var camera: Camera2D = $Camera #GSMain.find_node("Camera")
-# How far beside the player will the camera be at all times.
+# How far infront of the player will the camera be at all times.
 onready var camera_offset: float = camera.global_position.x - player.global_position.x
 
 var background: GSGameBackground
+export(int) var continues:int = 1    # Number of continues player is allowed on death
 
 var screen_size: Vector2 # Size of the game window.
 var default_color: Color = Color("#f27468")
@@ -31,3 +32,23 @@ func _process(_delta: float):#
 
 	# Make the camera follow the players horizontal movement
 	camera.position.x = player.position.x + camera_offset
+
+
+func _on_Player_player_died(dead_player: GSPlayer) -> void:
+	if continues == 0:
+		if get_tree().change_scene("res://UI/MainMenu.tscn") != OK:
+			print("An unexpected error occured when trying to switch to the MainMenu scene")
+		return
+		
+	continues -= 1
+	
+	# Show the Continue popup
+	var ContinueScene: GSGameContinue = scn_continue.instance()
+	if ContinueScene.connect("continued", self, "_on_GameContinue_continued") != OK:
+		print("Error connecting signal 'continued' of ContinueScene.")
+	print("Scene instanced")
+	dead_player.get_parent().add_child(ContinueScene)
+	
+func _on_GameContinue_continued() -> void:
+	print("Continued")
+	pass

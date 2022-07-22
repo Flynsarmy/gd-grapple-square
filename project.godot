@@ -14,6 +14,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Map/GameBackground.gd"
 }, {
+"base": "CanvasLayer",
+"class": "GSGameContinue",
+"language": "GDScript",
+"path": "res://UI/GameContinue.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "GSPlayer",
+"language": "GDScript",
+"path": "res://Player/Player.gd"
+}, {
 "base": "StaticBody2D",
 "class": "GSTerrain",
 "language": "GDScript",
@@ -26,6 +36,8 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "GSGameBackground": "",
+"GSGameContinue": "",
+"GSPlayer": "",
 "GSTerrain": "",
 "GitAPI": ""
 }
