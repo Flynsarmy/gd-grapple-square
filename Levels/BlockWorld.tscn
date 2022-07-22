@@ -10,6 +10,10 @@ script = ExtResource( 3 )
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 150, 240 )
 
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2( 360, 240 )
+current = true
+
 [node name="Terrains" type="Node" parent="."]
 
 [node name="Terrain" parent="Terrains" instance=ExtResource( 2 )]

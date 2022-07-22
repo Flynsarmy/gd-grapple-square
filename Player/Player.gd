@@ -1,10 +1,5 @@
 extends KinematicBody2D
 
-# Declare member variables here. Examples:
-# var a: int = 2
-# var b: String = "text"
-
-#var GRAVITY: int = ProjectSettings.get_setting("physics/2d/default_gravity")
 const GRAVITY: float = 12.0
 const MAX_ROTATION_SPEED = 6
 var GRAVITY_DIR: Vector2 = ProjectSettings.get_setting("physics/2d/default_gravity_vector")

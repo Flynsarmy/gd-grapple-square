@@ -1,11 +1,14 @@
 extends ParallaxBackground
 
+class_name GSGameBackground
 
 # Declare member variables here. Examples:
 export(int) var height = 480
 export(int) var num_blocks = 25
 export(Vector2) var min_size = Vector2(50, 50)
 export(Vector2) var max_size = Vector2(400, 300)
+export(bool) var auto_move = false
+export(float) var auto_move_speed = 360
 export(Color) var bg_color = Color("#f4e8d0")
 export(Color) var fg_color = Color("#EBDDC6")
 
@@ -55,6 +58,9 @@ func _ready() -> void:
 	parallax_layer = $ParallaxLayer3
 	parallax_layer.motion_mirroring.x = max(max_x, x_pos)
 	
+func _process(delta: float) -> void:
+	if auto_move:
+		self.scroll_base_offset.x -= auto_move_speed * delta
 		
 func spawn_block(position: Vector2, color: Color) -> ColorRect:
 	var rect = ColorRect.new()
