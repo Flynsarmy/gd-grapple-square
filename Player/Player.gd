@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 class_name GSPlayer
 
-signal player_died
+signal player_died(dead_player)
 
 const GRAVITY: float = 12.0
 const MAX_ROTATION_SPEED = 6         # How fast player can rotate when ending grapple

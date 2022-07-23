@@ -5,8 +5,13 @@ onready var wall: StaticBody2D = $PlayerContainer/Wall
 onready var grapple: Line2D = $PlayerContainer/Grapple
 
 func _ready() -> void:
-	var background: GSGameBackground = get_node("/root/GameBackground")
-	background.auto_move = true
+	GameBackground.auto_move = true
+	
+	var label: Label = $HBoxScores/MarginContainer/VBoxContainer2/lblHighScoreValue
+	label.text = str(GsGameState.high_score)
+	
+	label = $HBoxScores/MarginContainer/VBoxContainer2/lblYourScoreValue
+	label.text = str(GsGameState.score)
 	
 func _physics_process(_delta: float) -> void:
 	grapple.clear_points()
@@ -37,7 +42,7 @@ func _on_btnPlay_pressed() -> void:
 	
 	# Move to the main level
 	if get_tree().change_scene("res://Levels/BlockWorld.tscn") != OK:
-		print("An unexpected error occured when trying to switch to the Main scene")
+		print(self.filename, ": An unexpected error occured when trying to switch to the Main scene")
 
 func _on_btnExit_pressed() -> void:
 	get_tree().quit()

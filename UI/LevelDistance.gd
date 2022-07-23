@@ -30,4 +30,6 @@ func _on_VisibilityNotifier2D_screen_exited() -> void:
 
 # The only body we collide with is the Player so no need to check
 func _on_PlayerCollider_body_entered(_body: Node) -> void:
+	GsEvents.emit_signal("distance_marker_reached", number)
+	
 	lblNumber.add_color_override("font_color", Color("f27468"))

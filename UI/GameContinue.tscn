@@ -81,7 +81,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 480.0 ]
+"values": [ 0 ]
 }
 tracks/1/type = "bezier"
 tracks/1/path = NodePath("ModalContainer:margin_bottom")
@@ -129,7 +129,6 @@ script = ExtResource( 3 )
 [node name="ModalContainer" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = 480.0
 
 [node name="modalBackground" type="ColorRect" parent="ModalContainer"]
 anchor_left = 0.5
@@ -209,17 +208,17 @@ margin_bottom = 125.0
 theme = SubResource( 6 )
 custom_colors/font_color = Color( 0.572549, 0.231373, 0.690196, 1 )
 custom_fonts/font = SubResource( 7 )
-text = "5"
+text = "10"
 align = 1
 
-[node name="lblBestScore" type="Label" parent="ModalContainer"]
+[node name="lblHighScore" type="Label" parent="ModalContainer"]
 margin_top = 101.0
 margin_right = 720.0
 margin_bottom = 139.0
 theme = SubResource( 8 )
 custom_colors/font_color = Color( 0.572549, 0.231373, 0.690196, 1 )
 custom_fonts/font = SubResource( 9 )
-text = "BEST SCORE: 0"
+text = "HIGH SCORE: 0"
 align = 1
 
 [node name="lblYourScore" type="Label" parent="ModalContainer"]

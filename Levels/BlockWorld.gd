@@ -23,7 +23,7 @@ func _process(_delta: float):#
 	# Switch to MainMenu on escape
 	if Input.is_action_just_pressed("menu"):
 		if get_tree().change_scene("res://UI/MainMenu.tscn") != OK:
-			print("An unexpected error occured when trying to switch to the MainMenu scene")
+			print(self.filename, ": An unexpected error occured when trying to switch to the MainMenu scene")
 
 	# Make the camera follow the players horizontal movement
 	camera.position.x = player.position.x + camera_offset
@@ -32,7 +32,7 @@ func _process(_delta: float):#
 func _on_Player_player_died(dead_player: GSPlayer) -> void:
 	if continues == 0:
 		if get_tree().change_scene("res://UI/MainMenu.tscn") != OK:
-			print("An unexpected error occured when trying to switch to the MainMenu scene")
+			print(self.filename, ": An unexpected error occured when trying to switch to the MainMenu scene")
 		return
 		
 	continues -= 1
@@ -40,7 +40,10 @@ func _on_Player_player_died(dead_player: GSPlayer) -> void:
 	# Show the Continue popup
 	var ContinueScene: GSGameContinue = scn_continue.instance()
 	if ContinueScene.connect("continued", self, "_on_GameContinue_continued") != OK:
-		print("Error connecting signal 'continued' of ContinueScene.")
+		print(self.filename, ": Error connecting signal 'continued' of ContinueScene.")
+		
+	ContinueScene.score = GsGameState.score
+	ContinueScene.high_score = GsGameState.high_score
 
 	dead_player.get_parent().add_child(ContinueScene)
 	
