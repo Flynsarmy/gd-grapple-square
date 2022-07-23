@@ -11,6 +11,7 @@ export(int) var your_score: int = 0
 
 onready var lblTimer: Label = $ModalContainer/lblTimer
 onready var btnContinue: Button = $ModalContainer/modalBackground/btnContinue
+onready var animator: AnimationPlayer = $AnimationPlayer
 
 var btn_continue_color_toggled: bool = false
 
@@ -23,6 +24,9 @@ func _ready() -> void:
 	lblBestScore.text = 'BEST SCORE: ' + str(best_score)
 	lblYourScore.text = 'YOUR SCORE: ' + str(your_score)
 	_set_continue_seconds_text(seconds)
+	
+	animator.play("SlideUp")
+	yield(animator, "animation_finished")
 
 func _set_continue_seconds_text(seconds_remaining: int):
 	lblTimer.text = str(seconds_remaining)
