@@ -11,7 +11,6 @@ export(int) var your_score: int = 0
 
 onready var lblTimer: Label = $ModalContainer/lblTimer
 onready var btnContinue: Button = $ModalContainer/modalBackground/btnContinue
-onready var animator: AnimationPlayer = $AnimationPlayer
 
 var btn_continue_color_toggled: bool = false
 
@@ -25,8 +24,12 @@ func _ready() -> void:
 	lblYourScore.text = 'YOUR SCORE: ' + str(your_score)
 	_set_continue_seconds_text(seconds)
 	
+	var animator: AnimationPlayer = $BoxAnimator
 	animator.play("SlideUp")
 	yield(animator, "animation_finished")
+	
+	# Make the Continue button flash
+	$ModalContainer/modalBackground/btnContinue/btnContinueAnimator.play("Flash")
 
 func _set_continue_seconds_text(seconds_remaining: int):
 	lblTimer.text = str(seconds_remaining)
@@ -40,21 +43,6 @@ func _on_btnClose_pressed() -> void:
 func _on_btnContinue_pressed() -> void:
 	emit_signal("continued")
 	queue_free()
-
-
-func _on_FlashTimer_timeout() -> void:
-	var new_color: Color
-
-	if btn_continue_color_toggled:
-		new_color = Color("ffc762") # Gold
-	else:
-		 new_color = Color.white # White
-	
-	var stylebox: StyleBoxFlat = btnContinue.get_stylebox("normal")
-	stylebox.bg_color = new_color
-
-	btn_continue_color_toggled = !btn_continue_color_toggled
-
 
 func _on_ContinueTimer_timeout() -> void:
 	if seconds == 0:
