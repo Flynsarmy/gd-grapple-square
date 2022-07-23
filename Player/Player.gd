@@ -58,7 +58,6 @@ func _physics_process(delta: float) -> void:
 		#velocity -= collision.remainder
 		
 func continue():
-	print("Continuing")
 	var screen_size: Vector2 = get_viewport_rect().size
 	self.global_position = Vector2(self.global_position.x, screen_size.y / 2)
 	self.global_rotation = 0

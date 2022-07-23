@@ -41,7 +41,7 @@ func _on_Player_player_died(dead_player: GSPlayer) -> void:
 	var ContinueScene: GSGameContinue = scn_continue.instance()
 	if ContinueScene.connect("continued", self, "_on_GameContinue_continued") != OK:
 		print("Error connecting signal 'continued' of ContinueScene.")
-	print("Scene instanced")
+
 	dead_player.get_parent().add_child(ContinueScene)
 	
 func _on_GameContinue_continued() -> void:
