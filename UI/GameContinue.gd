@@ -9,15 +9,15 @@ export(int) var cost: int = 10
 export(int) var best_score: int = 0
 export(int) var your_score: int = 0
 
-onready var lblTimer: Label = $lblTimer
-onready var btnContinue: Button = $btnContinue
+onready var lblTimer: Label = $ModalContainer/lblTimer
+onready var btnContinue: Button = $ModalContainer/modalBackground/btnContinue
 
 var btn_continue_color_toggled: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var lblBestScore: Label = $lblBestScore
-	var lblYourScore: Label = $lblYourScore
+	var lblBestScore: Label = $ModalContainer/lblBestScore
+	var lblYourScore: Label = $ModalContainer/lblYourScore
 	
 	btnContinue.text = 'USE ' + str(cost)
 	lblBestScore.text = 'BEST SCORE: ' + str(best_score)

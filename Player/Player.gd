@@ -68,8 +68,7 @@ func continue():
 	ray.global_rotation = self.ray_default_rotation
 	
 	var grapple: Line2D = $GrappleHook
-	grapple.global_rotation = 0
-	grapple.visible = false
+	grapple.reset()
 
 func die():
 	is_in_limbo = true

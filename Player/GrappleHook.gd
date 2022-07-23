@@ -57,6 +57,10 @@ func _process(_delta: float) -> void:
 		# Add the new grapple line
 		self.add_point(target_position)
 		self.add_point(source.global_position, 1)
+		
+func reset() -> void:
+	global_rotation = 0
+	visible = false
 
 func begin_grapple(gsource: Object, gtarget: Object, gtarget_position: Vector2, angle: float) -> void:
 	emit_signal("begin_grapple", gsource, gtarget, gtarget_position, angle)
