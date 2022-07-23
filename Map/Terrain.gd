@@ -2,7 +2,6 @@ extends StaticBody2D
 
 class_name GSTerrain
 
-
 # Declare member variables here. Examples:
 onready var Obstacles: Node = $Obstacles
 var res_obstacle: PackedScene = preload("res://Map/Obstacle.tscn")
