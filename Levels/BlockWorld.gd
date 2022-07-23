@@ -1,12 +1,11 @@
 extends Node2D
 
 onready var scn_continue: PackedScene = preload("res://UI/GameContinue.tscn")
-onready var player: KinematicBody2D = $Player
+onready var player: GSPlayer = $Player
 onready var camera: Camera2D = $Camera #GSMain.find_node("Camera")
 # How far infront of the player will the camera be at all times.
 onready var camera_offset: float = camera.global_position.x - player.global_position.x
 
-var background: GSGameBackground
 export(int) var continues:int = 1    # Number of continues player is allowed on death
 
 var screen_size: Vector2 # Size of the game window.
@@ -14,15 +13,11 @@ var default_color: Color = Color("#f27468")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
 	screen_size = get_viewport_rect().size
 
 	# Set the default color of our terrain
 	var Terrain: GSTerrain = $Terrains/Terrain
 	Terrain.set_colors(default_color)
-	
-	background = GsGlobals.getStored("background")
-	$Terrains.get_parent().add_child(background)
 	
 func _process(_delta: float):#
 	# Switch to MainMenu on escape
@@ -50,5 +45,4 @@ func _on_Player_player_died(dead_player: GSPlayer) -> void:
 	dead_player.get_parent().add_child(ContinueScene)
 	
 func _on_GameContinue_continued() -> void:
-	print("Continued")
-	pass
+	player.continue();

@@ -56,27 +56,42 @@ func _physics_process(delta: float) -> void:
 	if (collision):
 		die();
 		#velocity -= collision.remainder
+		
+func continue():
+	print("Continuing")
+	var screen_size: Vector2 = get_viewport_rect().size
+	self.global_position = Vector2(self.global_position.x, screen_size.y / 2)
+	self.global_rotation = 0
+	self.has_grappled = false
+	self.grappling = false
+	self.is_in_limbo = false
+	ray.global_rotation = self.ray_default_rotation
+	
+	var grapple: Line2D = $GrappleHook
+	grapple.global_rotation = 0
+	grapple.visible = false
 
 func die():
 	is_in_limbo = true
 	emit_signal("player_died", self)
 
 func _on_GrappleHook_begin_grapple(_gsource: Object, _gtarget: Object, gtarget_position: Vector2, _angle: float) -> void:
-	grapple_target_position = gtarget_position
-	velocity.x = max(3.0, velocity.x)
-	velocity.y = -GRAVITY * GRAVITY_DIR.y * 0.5
-	grapple_velocity = velocity
-	grapple_time = 0
-	rotation_speed = MAX_ROTATION_SPEED * 0.2
-	grappling = true
-	has_grappled = true
+	self.grapple_target_position = gtarget_position
+	self.velocity.x = max(3.0, self.velocity.x)
+	self.velocity.y = -GRAVITY * GRAVITY_DIR.y * 0.5
+	self.grapple_velocity = self.velocity
+	self.grapple_time = 0
+	self.rotation_speed = MAX_ROTATION_SPEED * 0.2
+	ray.global_rotation = self.ray_default_rotation
+	self.grappling = true
+	self.has_grappled = true
 
 
 func _on_GrappleHook_end_grapple() -> void:
-	velocity.y = GRAVITY * GRAVITY_DIR.y * 0.01
+	self.velocity.y = GRAVITY * GRAVITY_DIR.y * 0.01
 	
-	rotation_speed = MAX_ROTATION_SPEED * (1 - min(grapple_time, 0.8))
-	grappling = false
+	self.rotation_speed = MAX_ROTATION_SPEED * (1 - min(self.grapple_time, 0.8))
+	self.grappling = false
 
 
 func _on_CollisionDetector_body_entered(_body: Node) -> void:

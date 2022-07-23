@@ -1,6 +1,5 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://Map/GameBackground.tscn" type="PackedScene" id=1]
 [ext_resource path="res://UI/MainMenu.gd" type="Script" id=2]
 [ext_resource path="res://assets/kenney_gameicons/Spritesheet/sheet_white1x.png" type="Texture" id=3]
 [ext_resource path="res://UI/GrappleTheme.tres" type="Theme" id=4]
@@ -106,9 +105,6 @@ script = ExtResource( 2 )
 position = Vector2( 360, 240 )
 current = true
 
-[node name="GameBackground" parent="." instance=ExtResource( 1 )]
-auto_move = true
-
 [node name="Ceiling" type="ColorRect" parent="."]
 anchor_right = 1.0
 margin_bottom = 40.0
@@ -121,11 +117,7 @@ anchor_bottom = 1.0
 margin_top = -120.0
 color = Color( 0.94902, 0.454902, 0.407843, 1 )
 
-[node name="HideOnPlay" type="Control" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-
-[node name="MarginContainer" type="MarginContainer" parent="HideOnPlay"]
+[node name="MarginContainer" type="MarginContainer" parent="." groups=["hide_on_play"]]
 margin_right = 720.0
 margin_bottom = 48.0
 size_flags_horizontal = 3
@@ -134,7 +126,7 @@ custom_constants/margin_right = 40
 custom_constants/margin_left = 40
 custom_constants/margin_bottom = 10
 
-[node name="lblPoints" type="Label" parent="HideOnPlay/MarginContainer"]
+[node name="lblPoints" type="Label" parent="MarginContainer"]
 margin_left = 40.0
 margin_right = 680.0
 margin_bottom = 38.0
@@ -142,25 +134,25 @@ theme = ExtResource( 4 )
 text = "1,742"
 align = 2
 
-[node name="HBoxScores" type="HBoxContainer" parent="HideOnPlay"]
+[node name="HBoxScores" type="HBoxContainer" parent="." groups=["hide_on_play"]]
 margin_top = 50.0
 margin_right = 720.0
 margin_bottom = 172.0
 alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HideOnPlay/HBoxScores"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxScores"]
 margin_left = 239.0
 margin_right = 440.0
 margin_bottom = 122.0
 
-[node name="lblHighScore" type="Label" parent="HideOnPlay/HBoxScores/VBoxContainer"]
+[node name="lblHighScore" type="Label" parent="HBoxScores/VBoxContainer"]
 margin_right = 201.0
 margin_bottom = 38.0
 theme = ExtResource( 4 )
 custom_colors/font_color = Color( 0.94902, 0.454902, 0.407843, 1 )
 text = "HIGH SCORE:"
 
-[node name="lblYourScore" type="Label" parent="HideOnPlay/HBoxScores/VBoxContainer"]
+[node name="lblYourScore" type="Label" parent="HBoxScores/VBoxContainer"]
 margin_top = 42.0
 margin_right = 201.0
 margin_bottom = 80.0
@@ -168,7 +160,7 @@ theme = ExtResource( 4 )
 custom_colors/font_color = Color( 0.94902, 0.454902, 0.407843, 1 )
 text = "YOUR SCORE:"
 
-[node name="lblGamesPlayed" type="Label" parent="HideOnPlay/HBoxScores/VBoxContainer"]
+[node name="lblGamesPlayed" type="Label" parent="HBoxScores/VBoxContainer"]
 margin_top = 84.0
 margin_right = 201.0
 margin_bottom = 122.0
@@ -176,25 +168,25 @@ theme = ExtResource( 4 )
 custom_colors/font_color = Color( 0.94902, 0.454902, 0.407843, 1 )
 text = "GAMES PLAYED:"
 
-[node name="MarginContainer" type="MarginContainer" parent="HideOnPlay/HBoxScores"]
+[node name="MarginContainer" type="MarginContainer" parent="HBoxScores"]
 margin_left = 444.0
 margin_right = 481.0
 margin_bottom = 122.0
 custom_constants/margin_left = 20
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="HideOnPlay/HBoxScores/MarginContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxScores/MarginContainer"]
 margin_left = 20.0
 margin_right = 37.0
 margin_bottom = 122.0
 
-[node name="lblHighScoreValue" type="Label" parent="HideOnPlay/HBoxScores/MarginContainer/VBoxContainer2"]
+[node name="lblHighScoreValue" type="Label" parent="HBoxScores/MarginContainer/VBoxContainer2"]
 margin_right = 17.0
 margin_bottom = 38.0
 theme = ExtResource( 4 )
 custom_colors/font_color = Color( 0.94902, 0.454902, 0.407843, 1 )
 text = "0"
 
-[node name="lblYourScoreValue" type="Label" parent="HideOnPlay/HBoxScores/MarginContainer/VBoxContainer2"]
+[node name="lblYourScoreValue" type="Label" parent="HBoxScores/MarginContainer/VBoxContainer2"]
 margin_top = 42.0
 margin_right = 17.0
 margin_bottom = 80.0
@@ -202,7 +194,7 @@ theme = ExtResource( 4 )
 custom_colors/font_color = Color( 0.94902, 0.454902, 0.407843, 1 )
 text = "0"
 
-[node name="lblGamesPlayedValue" type="Label" parent="HideOnPlay/HBoxScores/MarginContainer/VBoxContainer2"]
+[node name="lblGamesPlayedValue" type="Label" parent="HBoxScores/MarginContainer/VBoxContainer2"]
 margin_top = 84.0
 margin_right = 17.0
 margin_bottom = 122.0
@@ -210,7 +202,7 @@ theme = ExtResource( 4 )
 custom_colors/font_color = Color( 0.94902, 0.454902, 0.407843, 1 )
 text = "0"
 
-[node name="btnPlay" type="TextureButton" parent="HideOnPlay"]
+[node name="btnPlay" type="TextureButton" parent="." groups=["hide_on_play"]]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -228,14 +220,14 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="ColorRect" type="ColorRect" parent="HideOnPlay/btnPlay"]
+[node name="ColorRect" type="ColorRect" parent="btnPlay"]
 show_behind_parent = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 color = Color( 0.278431, 0.796078, 0.737255, 1 )
 
-[node name="btnSound" type="TextureButton" parent="HideOnPlay"]
+[node name="btnSound" type="TextureButton" parent="." groups=["hide_on_play"]]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -254,14 +246,14 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="ColorRect" type="ColorRect" parent="HideOnPlay/btnSound"]
+[node name="ColorRect" type="ColorRect" parent="btnSound"]
 show_behind_parent = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 color = Color( 0.278431, 0.796078, 0.737255, 1 )
 
-[node name="btnCustomize" type="TextureButton" parent="HideOnPlay"]
+[node name="btnCustomize" type="TextureButton" parent="." groups=["hide_on_play"]]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -278,14 +270,14 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="ColorRect" type="ColorRect" parent="HideOnPlay/btnCustomize"]
+[node name="ColorRect" type="ColorRect" parent="btnCustomize"]
 show_behind_parent = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 color = Color( 0.278431, 0.796078, 0.737255, 1 )
 
-[node name="btnExit" type="TextureButton" parent="HideOnPlay"]
+[node name="btnExit" type="TextureButton" parent="." groups=["hide_on_play"]]
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
@@ -299,44 +291,45 @@ texture_normal = SubResource( 6 )
 expand = true
 stretch_mode = 5
 
-[node name="PlayerContainer" type="Node2D" parent="HideOnPlay"]
+[node name="PlayerContainer" type="Node2D" parent="." groups=["hide_on_play"]]
 
-[node name="Wall" type="StaticBody2D" parent="HideOnPlay/PlayerContainer"]
+[node name="Wall" type="StaticBody2D" parent="PlayerContainer"]
 position = Vector2( 573, 39 )
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HideOnPlay/PlayerContainer/Wall"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerContainer/Wall"]
 shape = SubResource( 7 )
 
-[node name="PinJoint2D" type="PinJoint2D" parent="HideOnPlay/PlayerContainer"]
+[node name="PinJoint2D" type="PinJoint2D" parent="PlayerContainer"]
 position = Vector2( 576, 38 )
 node_a = NodePath("../Wall")
 node_b = NodePath("../Player")
 
-[node name="Grapple" type="Line2D" parent="HideOnPlay/PlayerContainer"]
+[node name="Grapple" type="Line2D" parent="PlayerContainer"]
 width = 3.0
 default_color = Color( 0.278431, 0.796078, 0.737255, 1 )
 
-[node name="Player" type="RigidBody2D" parent="HideOnPlay/PlayerContainer"]
+[node name="Player" type="RigidBody2D" parent="PlayerContainer"]
 position = Vector2( 549, 119 )
 rotation = 0.296706
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="ColorRect" type="ColorRect" parent="HideOnPlay/PlayerContainer/Player"]
+[node name="ColorRect" type="ColorRect" parent="PlayerContainer/Player"]
 margin_left = -15.0
 margin_top = -15.0
 margin_right = 15.0
 margin_bottom = 15.0
 color = Color( 0.278431, 0.796078, 0.737255, 1 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HideOnPlay/PlayerContainer/Player"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerContainer/Player"]
 shape = SubResource( 9 )
 
 [node name="SceneTransitionRect" type="ColorRect" parent="."]
+visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -355,7 +348,7 @@ root_node = NodePath("../..")
 anims/MoveToStart = SubResource( 10 )
 anims/RESET = SubResource( 11 )
 
-[connection signal="pressed" from="HideOnPlay/btnPlay" to="." method="_on_btnPlay_pressed"]
-[connection signal="toggled" from="HideOnPlay/btnSound" to="." method="_on_btnSound_toggled"]
-[connection signal="pressed" from="HideOnPlay/btnCustomize" to="." method="_on_btnCustomize_pressed"]
-[connection signal="pressed" from="HideOnPlay/btnExit" to="." method="_on_btnExit_pressed"]
+[connection signal="pressed" from="btnPlay" to="." method="_on_btnPlay_pressed"]
+[connection signal="toggled" from="btnSound" to="." method="_on_btnSound_toggled"]
+[connection signal="pressed" from="btnCustomize" to="." method="_on_btnCustomize_pressed"]
+[connection signal="pressed" from="btnExit" to="." method="_on_btnExit_pressed"]

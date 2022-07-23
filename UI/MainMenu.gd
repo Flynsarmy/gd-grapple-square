@@ -1,9 +1,12 @@
 extends Control
 
-onready var player: RigidBody2D = $HideOnPlay/PlayerContainer/Player
-onready var wall: StaticBody2D = $HideOnPlay/PlayerContainer/Wall
-onready var grapple: Line2D = $HideOnPlay/PlayerContainer/Grapple
-onready var parallax: ParallaxBackground = $GameBackground
+onready var player: RigidBody2D = $PlayerContainer/Player
+onready var wall: StaticBody2D = $PlayerContainer/Wall
+onready var grapple: Line2D = $PlayerContainer/Grapple
+
+func _ready() -> void:
+	var background: GSGameBackground = get_node("/root/GameBackground")
+	background.auto_move = true
 	
 func _physics_process(_delta: float) -> void:
 	grapple.clear_points()
@@ -18,19 +21,19 @@ func _on_btnSound_toggled(button_pressed: bool) -> void:
 
 
 func _on_btnPlay_pressed() -> void:
-	var HideOnPlayContainer: Control = $HideOnPlay
 	var SceneTransitionRect: ColorRect = $SceneTransitionRect
 	var Animator: AnimationPlayer = $SceneTransitionRect/AnimationPlayer
 
 	# Run the play animation
-	HideOnPlayContainer.visible = false
+	for node in get_tree().get_nodes_in_group("hide_on_play"):
+		node.visible = false
 	SceneTransitionRect.visible = true
-	Animator.play("MoveToStart")
+	Animator.play("MoveToStart", -1, 2.0)
 	yield(Animator, "animation_finished")
 
 	# Save our background
-	parallax.get_parent().remove_child(parallax)
-	GsGlobals.store("background", parallax)
+	#parallax.get_parent().remove_child(parallax)
+	#GsGlobals.store("background", parallax)
 	
 	# Move to the main level
 	if get_tree().change_scene("res://Levels/BlockWorld.tscn") != OK:

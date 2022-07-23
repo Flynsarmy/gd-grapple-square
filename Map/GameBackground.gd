@@ -3,14 +3,14 @@ extends ParallaxBackground
 class_name GSGameBackground
 
 # Declare member variables here. Examples:
-export(int) var height = 480
-export(int) var num_blocks = 25
-export(Vector2) var min_size = Vector2(50, 50)
-export(Vector2) var max_size = Vector2(400, 300)
-export(bool) var auto_move = false
-export(float) var auto_move_speed = 360
-export(Color) var bg_color = Color("#f4e8d0")
-export(Color) var fg_color = Color("#EBDDC6")
+export(int) var height: int = 480
+export(int) var num_blocks: int = 25
+export(Vector2) var min_size: Vector2 = Vector2(50, 50)
+export(Vector2) var max_size: Vector2 = Vector2(400, 300)
+export(bool) var auto_move: bool = false
+export(float) var auto_move_speed: float = 360
+export(Color) var bg_color: Color = Color("#f4e8d0")
+export(Color) var fg_color: Color = Color("#EBDDC6")
 
 onready var BGContainer: ParallaxLayer = $ParallaxLayer2
 onready var FGContainer: ParallaxLayer = $ParallaxLayer3

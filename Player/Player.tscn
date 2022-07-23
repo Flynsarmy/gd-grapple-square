@@ -25,6 +25,7 @@ enabled = true
 cast_to = Vector2( 1000, 0 )
 
 [node name="GrappleHook" parent="." instance=ExtResource( 2 )]
+show_behind_parent = true
 default_color = Color( 0.278431, 0.796078, 0.737255, 1 )
 ray_path = NodePath("../RayCast2D")
 
