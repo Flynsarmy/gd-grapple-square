@@ -1,6 +1,8 @@
 tool
 extends Line2D
 
+class_name GSGrappleHook
+
 signal begin_grapple
 signal end_grapple
 
