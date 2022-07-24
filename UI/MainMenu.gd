@@ -3,6 +3,7 @@ extends Control
 onready var player: RigidBody2D = $PlayerContainer/Player
 onready var wall: StaticBody2D = $PlayerContainer/Wall
 onready var grapple: Line2D = $PlayerContainer/Grapple
+onready var Animator: AnimationPlayer = $SceneTransitionPlayer
 
 func _ready() -> void:
 	GameBackground.auto_move = true
@@ -31,13 +32,6 @@ func _on_btnSound_toggled(button_pressed: bool) -> void:
 
 
 func _on_btnPlay_pressed() -> void:
-	var SceneTransitionRect: ColorRect = $SceneTransitionRect
-	var Animator: AnimationPlayer = $SceneTransitionRect/AnimationPlayer
-
-	# Run the play animation
-	for node in get_tree().get_nodes_in_group("hide_on_play"):
-		node.visible = false
-	SceneTransitionRect.visible = true
 	Animator.play("MoveToStart", -1, 2.0)
 	yield(Animator, "animation_finished")
 
