@@ -7,7 +7,7 @@
 [node name="GemShard" type="RigidBody2D"]
 collision_layer = 16
 collision_mask = 3
-mass = 7.5
+mass = 37.5
 gravity_scale = 0.0
 
 [node name="Sprite" type="Sprite" parent="."]

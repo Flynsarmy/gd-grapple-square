@@ -32,7 +32,7 @@ func _on_btnSound_toggled(button_pressed: bool) -> void:
 
 
 func _on_btnPlay_pressed() -> void:
-	Animator.play("MoveToStart", -1, 2.0)
+	Animator.play("OnPlay", -1, 2.0)
 	yield(Animator, "animation_finished")
 
 	GsEvents.emit_signal("started_new_game")

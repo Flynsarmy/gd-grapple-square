@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://UI/TopCoins.tscn" type="PackedScene" id=1]
 [ext_resource path="res://UI/MainMenu.gd" type="Script" id=2]
@@ -29,8 +29,60 @@ region = Rect2( 400, 0, 50, 50 )
 
 [sub_resource type="RectangleShape2D" id=9]
 
+[sub_resource type="Animation" id=12]
+resource_name = "OnLoad"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("btnPlay:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.35 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ Vector2( 767, 190 ), Vector2( 260, 190 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("btnCustomize:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ Vector2( 1006, 202.5 ), Vector2( 500, 202.5 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("btnSound:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ Vector2( -430, 202.5 ), Vector2( 70, 202.5 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("HBoxScores:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.35 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
 [sub_resource type="Animation" id=10]
-resource_name = "MoveToStart"
+resource_name = "OnPlay"
 length = 0.75
 step = 0.05
 tracks/0/type = "value"
@@ -263,6 +315,54 @@ tracks/9/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ false ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("btnPlay:rect_position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 260, 190 ) ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("btnCustomize:rect_position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 500, 202.5 ) ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath("btnSound:rect_position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 70, 202.5 ) ]
+}
+tracks/13/type = "value"
+tracks/13/path = NodePath("HBoxScores:modulate")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
 }
 
 [node name="MainMenu" type="Control"]
@@ -498,7 +598,9 @@ __meta__ = {
 }
 
 [node name="SceneTransitionPlayer" type="AnimationPlayer" parent="."]
-anims/MoveToStart = SubResource( 10 )
+autoplay = "OnLoad"
+anims/OnLoad = SubResource( 12 )
+anims/OnPlay = SubResource( 10 )
 anims/RESET = SubResource( 11 )
 
 [connection signal="pressed" from="btnPlay" to="." method="_on_btnPlay_pressed"]
