@@ -22,7 +22,9 @@ func save_game() -> void:
 	}
 	
 	var save_game: File = File.new()
-	save_game.open(save_game_filepath, File.WRITE)
+	if save_game.open(save_game_filepath, File.WRITE) != OK:
+		print(self.filename, ": Error opening save file for writing")
+		return
 	save_game.store_line(to_json(save_data))
 	save_game.close()
 	
@@ -31,7 +33,9 @@ func load_game() -> void:
 	if not save_game.file_exists(save_game_filepath):
 		return # Error! We don't have a save to load.
 		
-	save_game.open(save_game_filepath, File.READ)
+	if save_game.open(save_game_filepath, File.READ) != OK:
+		print(self.filename, ": Error opening save file for reading")
+		return
 	
 	# Get the saved dictionary from the next line in the save file
 	var save_data: Dictionary = parse_json(save_game.get_line())
@@ -41,7 +45,6 @@ func load_game() -> void:
 			self[data_name] = save_data[data_name]
 	
 	save_game.close()
-	
 
 func _on_coin_acquired() -> void:
 	coins += 1
