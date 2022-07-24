@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/coin_atlastexture.tres" type="Texture" id=1]
+[ext_resource path="res://Props/Gem.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 25, 20.75 )
+
+[node name="Gem" type="Area2D"]
+collision_layer = 16
+collision_mask = 2
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 1 )
+centered = false
+region_rect = Rect2( 640, 384, 128, 128 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( 45, 54.25 )
+shape = SubResource( 1 )
+
+[node name="DebrisContainer" type="Node2D" parent="."]
+visible = false
+
+[node name="ShardContainer" type="Node2D" parent="."]
+visible = false
+
+[connection signal="body_entered" from="." to="." method="_on_Gem_body_entered"]

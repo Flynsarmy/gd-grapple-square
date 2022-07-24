@@ -1,12 +1,16 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Map/Terrain.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Levels/BlockWorld.gd" type="Script" id=3]
 [ext_resource path="res://UI/LevelDistance.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Props/Gem.tscn" type="PackedScene" id=5]
+[ext_resource path="res://UI/TopCoins.tscn" type="PackedScene" id=6]
 
 [node name="BlockWorld" type="Node2D"]
 script = ExtResource( 3 )
+
+[node name="TopCoins" parent="." instance=ExtResource( 6 )]
 
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2( 360, 240 )
@@ -23,5 +27,8 @@ position = Vector2( 150, 240 )
 [node name="Terrains" type="Node" parent="."]
 
 [node name="Terrain" parent="Terrains" instance=ExtResource( 2 )]
+
+[node name="Gem" parent="." instance=ExtResource( 5 )]
+position = Vector2( 470, 151 )
 
 [connection signal="player_died" from="Player" to="." method="_on_Player_player_died"]
