@@ -16,6 +16,8 @@ func _ready() -> void:
 	label = $HBoxScores/MarginContainer/VBoxContainer2/lblGamesPlayedValue
 	label.text = GsHelpers.format_number(GsGameState.games_played)
 	
+	GsGameState.save_game()
+	
 func _physics_process(_delta: float) -> void:
 	grapple.clear_points()
 	grapple.add_point(player.global_position)

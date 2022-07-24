@@ -30,6 +30,8 @@ func _process(_delta: float):#
 
 
 func _on_Player_player_died(dead_player: GSPlayer) -> void:
+	GsGameState.save_game()
+
 	if continues == 0:
 		if get_tree().change_scene("res://UI/MainMenu.tscn") != OK:
 			print(self.filename, ": An unexpected error occured when trying to switch to the MainMenu scene")
