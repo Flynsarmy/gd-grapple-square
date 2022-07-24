@@ -8,10 +8,13 @@ func _ready() -> void:
 	GameBackground.auto_move = true
 	
 	var label: Label = $HBoxScores/MarginContainer/VBoxContainer2/lblHighScoreValue
-	label.text = str(GsGameState.high_score)
+	label.text = GsHelpers.format_number(GsGameState.high_score)
 	
 	label = $HBoxScores/MarginContainer/VBoxContainer2/lblYourScoreValue
-	label.text = str(GsGameState.score)
+	label.text = GsHelpers.format_number(GsGameState.score)
+	
+	label = $HBoxScores/MarginContainer/VBoxContainer2/lblGamesPlayedValue
+	label.text = GsHelpers.format_number(GsGameState.games_played)
 	
 func _physics_process(_delta: float) -> void:
 	grapple.clear_points()
@@ -36,9 +39,7 @@ func _on_btnPlay_pressed() -> void:
 	Animator.play("MoveToStart", -1, 2.0)
 	yield(Animator, "animation_finished")
 
-	# Save our background
-	#parallax.get_parent().remove_child(parallax)
-	#GsGlobals.store("background", parallax)
+	GsEvents.emit_signal("started_new_game")
 	
 	# Move to the main level
 	if get_tree().change_scene("res://Levels/BlockWorld.tscn") != OK:

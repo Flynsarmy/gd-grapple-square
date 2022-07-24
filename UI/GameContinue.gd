@@ -18,8 +18,8 @@ func _ready() -> void:
 	var lblYourScore: Label = $ModalContainer/lblYourScore
 	
 	btnContinue.text = 'USE ' + str(cost_to_continue)
-	lblHighScore.text = 'HIGH SCORE: ' + str(high_score)
-	lblYourScore.text = 'YOUR SCORE: ' + str(score)
+	lblHighScore.text = 'HIGH SCORE: ' + GsHelpers.format_number(high_score)
+	lblYourScore.text = 'YOUR SCORE: ' + GsHelpers.format_number(score)
 	_set_continue_seconds_text(seconds)
 	
 	var animator: AnimationPlayer = $BoxAnimator
