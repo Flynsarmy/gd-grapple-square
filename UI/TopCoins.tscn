@@ -4,7 +4,7 @@
 [ext_resource path="res://assets/coin_atlastexture.tres" type="Texture" id=2]
 [ext_resource path="res://UI/TopCoins.gd" type="Script" id=3]
 
-[node name="TopCoins" type="Node2D" groups=["hide_on_play"]]
+[node name="TopCoins" type="Node2D"]
 script = ExtResource( 3 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
