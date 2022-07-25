@@ -52,4 +52,14 @@ func _on_Gem_body_entered(_body: Node) -> void:
 	ShardContainer.visible = true
 	($Sprite as Sprite).visible = false
 	
+	($FreeTImer as Timer).start()
+	
 	GsEvents.emit_signal("coin_acquired")
+
+
+func _on_FreeTImer_timeout() -> void:
+	var animator: AnimationPlayer = $FadeOutAnimator
+	animator.play("FadeOut")
+	yield(animator, "animation_finished")
+	
+	queue_free()
