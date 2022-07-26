@@ -3,11 +3,9 @@ extends CanvasLayer
 class_name GSGameContinue
 
 signal continued
+signal not_continued
 
 export(int) var seconds: int = 10
-export(int) var cost_to_continue: int = 10
-export(int) var score: int = 0
-export(int) var high_score: int = 0
 
 onready var lblTimer: Label = $ModalContainer/lblTimer
 onready var btnContinue: Button = $ModalContainer/modalBackground/btnContinue
@@ -17,9 +15,9 @@ func _ready() -> void:
 	var lblHighScore: Label = $ModalContainer/lblHighScore
 	var lblYourScore: Label = $ModalContainer/lblYourScore
 	
-	btnContinue.text = 'USE ' + str(cost_to_continue)
-	lblHighScore.text = 'HIGH SCORE: ' + GsHelpers.format_number(high_score)
-	lblYourScore.text = 'YOUR SCORE: ' + GsHelpers.format_number(score)
+	btnContinue.text = 'USE ' + str(GsGameState.continue_cost)
+	lblHighScore.text = 'HIGH SCORE: ' + GsHelpers.format_number(GsGameState.high_score)
+	lblYourScore.text = 'YOUR SCORE: ' + GsHelpers.format_number(GsGameState.score)
 	_set_continue_seconds_text(seconds)
 	
 	var animator: AnimationPlayer = $BoxAnimator
@@ -35,8 +33,8 @@ func _set_continue_seconds_text(seconds_remaining: int):
 
 
 func _on_btnClose_pressed() -> void:
-	if get_tree().change_scene("res://UI/MainMenu.tscn") != OK:
-		print(self.filename, ": An unexpected error occured when trying to switch to the MainMenu scene")
+	emit_signal("not_continued")
+	queue_free()
 
 
 func _on_btnContinue_pressed() -> void:
@@ -45,8 +43,7 @@ func _on_btnContinue_pressed() -> void:
 
 func _on_ContinueTimer_timeout() -> void:
 	if seconds == 0:
-		if get_tree().change_scene("res://UI/MainMenu.tscn") != OK:
-			print(self.filename, ": An unexpected error occured when trying to switch to the MainMenu scene")
+		_on_btnClose_pressed()
 		return
 	
 	seconds -= 1

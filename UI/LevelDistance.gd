@@ -3,6 +3,7 @@ extends Node2D
 class_name GSLevelDistance
 
 export(int) var number: int = 1
+export(Color) var reached_color: Color = Color("f27468")
 
 onready var lblNumber: Label = $lblNumber
 
@@ -21,6 +22,7 @@ func _on_VisibilityNotifier2D_screen_entered() -> void:
 	new_position.x += width
 
 	new_node.number = self.number + 1
+	new_node.reached_color = self.reached_color
 	new_node.transform = Transform2D(self.global_rotation, new_position)
 	get_parent().add_child(new_node)
 
@@ -32,4 +34,4 @@ func _on_VisibilityNotifier2D_screen_exited() -> void:
 func _on_PlayerCollider_body_entered(_body: Node) -> void:
 	GsEvents.emit_signal("distance_marker_reached", number)
 	
-	lblNumber.add_color_override("font_color", Color("f27468"))
+	lblNumber.add_color_override("font_color", reached_color)

@@ -4,7 +4,9 @@ var score: int = 0 setget _set_score
 var high_score: int = 0
 var coins: int = 0
 var games_played: int = 0
+var continue_cost: int = 10 # warning-ignore:unused_class_variable
 
+var saveable_properties = ["high_score", "coins", "games_played"]
 var save_game_filepath = "user://grapplesquare.dat"
 
 func _ready() -> void:
@@ -15,12 +17,12 @@ func _ready() -> void:
 	load_game()
 	
 func save_game() -> void:
-	var save_data: Dictionary = {
-		"high_score": high_score,
-		"coins": coins,
-		"games_played": games_played
-	}
+	# Collect our save data into a Dictionary
+	var save_data: Dictionary = {}
+	for property in saveable_properties:
+		save_data[property] = self[property]
 	
+	# Do the saving
 	var save_game: File = File.new()
 	if save_game.open(save_game_filepath, File.WRITE) != OK:
 		print(self.filename, ": Error opening save file for writing")
@@ -30,9 +32,12 @@ func save_game() -> void:
 	
 func load_game() -> void:
 	var save_game = File.new()
+	
+	# Make sure the file exists
 	if not save_game.file_exists(save_game_filepath):
 		return # Error! We don't have a save to load.
 		
+	# Make sure the file is readable
 	if save_game.open(save_game_filepath, File.READ) != OK:
 		print(self.filename, ": Error opening save file for reading")
 		return
@@ -40,9 +45,9 @@ func load_game() -> void:
 	# Get the saved dictionary from the next line in the save file
 	var save_data: Dictionary = parse_json(save_game.get_line())
 	
-	for data_name in ["high_score", "coins", "games_played"]:
-		if save_data.has(data_name):
-			self[data_name] = save_data[data_name]
+	for property in saveable_properties:
+		if save_data.has(property):
+			self[property] = save_data[property]
 	
 	save_game.close()
 

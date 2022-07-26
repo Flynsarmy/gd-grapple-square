@@ -21,9 +21,11 @@ shape = SubResource( 1 )
 position = Vector2( 375, 431.5 )
 shape = SubResource( 4 )
 
-[node name="Obstacles" type="Node" parent="."]
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( 375, 239 )
+scale = Vector2( 37.5, 26.5 )
 
-[node name="Tween" type="Tween" parent="."]
+[node name="Obstacles" type="Node2D" parent="."]
 
 [node name="Ceiling" type="ColorRect" parent="."]
 margin_top = -26.0
@@ -34,10 +36,6 @@ margin_bottom = 40.0
 margin_top = 359.0
 margin_right = 750.0
 margin_bottom = 504.0
-
-[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
-position = Vector2( 375, 239 )
-scale = Vector2( 37.5, 26.5 )
 
 [connection signal="screen_entered" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_entered"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

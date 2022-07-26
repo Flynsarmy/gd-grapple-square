@@ -60,28 +60,6 @@ func create_obstacle(the_min_scale: Vector2, the_max_scale: Vector2) -> StaticBo
 	Obstacles.add_child(Obstacle)
 	return Obstacle
 	
-func set_colors(new_color: Color) -> void:
-	Ceiling.modulate = new_color
-	Floor.modulate = new_color
-	# Obstacles
-	for obstacle in $Obstacles.get_children():
-		obstacle.get_node("ColorRect").modulate = new_color
-	
-func tween_colors(new_color: Color, duration: float) -> void:
-	var tween: Tween = $Tween
-	# Floor and ceiling
-	# warning-ignore:return_value_discarded
-	tween.interpolate_property(Ceiling, "modulate", Ceiling.modulate, new_color, duration, Tween.TRANS_LINEAR)
-	# warning-ignore:return_value_discarded
-	tween.interpolate_property(Floor, "modulate", Floor.modulate, new_color, duration, Tween.TRANS_LINEAR)
-	# Obstacles
-	for obstacle in $Obstacles.get_children():
-		var block: ColorRect = obstacle.get_node("ColorRect")
-		# warning-ignore:return_value_discarded
-		tween.interpolate_property(block, "modulate", block.modulate, new_color, duration, Tween.TRANS_LINEAR)
-	# warning-ignore:return_value_discarded
-	tween.start()
-
 # Spawn a new instance of this piece of terrain to the right of it as it enters the screen
 func _on_VisibilityNotifier2D_screen_entered() -> void:
 	#Spawn a copy of myself to the right
@@ -92,7 +70,6 @@ func _on_VisibilityNotifier2D_screen_entered() -> void:
 
 	new_node.transform = Transform2D(self.global_rotation, new_position)
 	get_parent().add_child(new_node)
-	new_node.set_colors(Ceiling.modulate)
 
 # Despawn terrain as it leaves the left side of screen
 func _on_VisibilityNotifier2D_screen_exited() -> void:

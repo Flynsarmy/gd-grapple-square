@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Map/Terrain.tscn" type="PackedScene" id=2]
@@ -7,14 +7,66 @@
 [ext_resource path="res://Props/Gem.tscn" type="PackedScene" id=5]
 [ext_resource path="res://UI/TopCoins.tscn" type="PackedScene" id=6]
 
+[sub_resource type="Animation" id=1]
+resource_name = "BackToMenu"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Camera/TransitionContainer/CeilingTransition:margin_bottom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.25 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -3.0, 240.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Camera/TransitionContainer/FloorTransition:margin_top")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.25 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 483.0, 240.0 ]
+}
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Camera/TransitionContainer/CeilingTransition:margin_bottom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -3.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Camera/TransitionContainer/FloorTransition:margin_top")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 483.0 ]
+}
+
 [node name="BlockWorld" type="Node2D"]
 script = ExtResource( 3 )
 
 [node name="TopCoins" parent="." instance=ExtResource( 6 )]
-
-[node name="Camera" type="Camera2D" parent="."]
-position = Vector2( 360, 240 )
-current = true
 
 [node name="DistanceNumbers" type="Node2D" parent="."]
 
@@ -24,11 +76,37 @@ position = Vector2( 400, 0 )
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 150, 240 )
 
-[node name="Terrains" type="Node" parent="."]
+[node name="Terrains" type="Node2D" parent="."]
+modulate = Color( 0.94902, 0.454902, 0.407843, 1 )
 
 [node name="Terrain" parent="Terrains" instance=ExtResource( 2 )]
 
 [node name="Gem" parent="." instance=ExtResource( 5 )]
 position = Vector2( 470, 151 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2( 360, 240 )
+current = true
+
+[node name="TransitionContainer" type="Node2D" parent="Camera"]
+modulate = Color( 0.94902, 0.454902, 0.407843, 1 )
+position = Vector2( -360, -240 )
+
+[node name="CeilingTransition" type="ColorRect" parent="Camera/TransitionContainer"]
+margin_top = -45.0
+margin_right = 722.0
+margin_bottom = -3.0
+
+[node name="FloorTransition" type="ColorRect" parent="Camera/TransitionContainer"]
+margin_top = 483.0
+margin_right = 723.0
+margin_bottom = 525.0
+
+[node name="TransitionAnimator" type="AnimationPlayer" parent="Camera/TransitionContainer"]
+root_node = NodePath("../../..")
+anims/BackToMenu = SubResource( 1 )
+anims/RESET = SubResource( 2 )
 
 [connection signal="player_died" from="Player" to="." method="_on_Player_player_died"]
