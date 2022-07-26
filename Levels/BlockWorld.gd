@@ -81,4 +81,4 @@ func _on_distance_marker_reached(number: int) -> void:
 				node.reached_color = new_color
 
 		# Update the BackToMenu transition container's colour too
-		($TransitionContainer as Node2D).modulate = new_color
+		($Camera/TransitionContainer as Node2D).modulate = new_color

@@ -1,12 +1,27 @@
 extends Node
 
+var player_unlockables: Dictionary = {
+	"default": {
+		"price": 0,
+		"sprite": "res://assets/player/default.png",
+		"color": "47cbbc",
+	},
+	"godot": {
+		"price": 500,
+		"sprite": "res://icon.png",
+		"color": "",
+	}
+}
+
 var score: int = 0 setget _set_score
 var high_score: int = 0
 var coins: int = 0
 var games_played: int = 0
 var continue_cost: int = 10 # warning-ignore:unused_class_variable
+var player_unlockables_unlocked = ["default"]
+var player_unlockable: String = "default"
 
-var saveable_properties = ["high_score", "coins", "games_played"]
+var saveable_properties = ["high_score", "coins", "games_played", "player_unlockables_unlocked", "player_unlockable"]
 var save_game_filepath = "user://grapplesquare.dat"
 
 func _ready() -> void:

@@ -37,13 +37,13 @@ func _ready():
 		
 	# Top big terrain
 #	if randi() % 4 == 0:
-#		var Obstacle: StaticBody2D = create_obstacle(3.0, 5.0, 3.0, 5.0)
+#		var Obstacle: StaticBody2D = create_obstacle(Vector2(3.0, 5.0), Vector2(3.0, 5.0))
 #		Obstacle.global_position = self.global_position + Vector2(randi() % int(screen_size.x), top_offset)
 #
 #	# Bottom big terrain
 #	else:
 #		if randi() % 4 == 0:
-#			var Obstacle: StaticBody2D = create_obstacle(3.0, 5.0, 3.0, 5.0)
+#			var Obstacle: StaticBody2D = create_obstacle(Vector2(3.0, 5.0), Vector2(3.0, 5.0))
 #			# Don't know how to grab the Obstacle.ColorRect's base height, so hardcode it for now
 #			Obstacle.global_position = \
 #				self.global_position + \

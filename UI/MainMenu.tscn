@@ -1,9 +1,11 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://UI/TopCoins.tscn" type="PackedScene" id=1]
 [ext_resource path="res://UI/MainMenu.gd" type="Script" id=2]
 [ext_resource path="res://assets/kenney_gameicons/Spritesheet/sheet_white1x.png" type="Texture" id=3]
 [ext_resource path="res://UI/GrappleTheme.tres" type="Theme" id=4]
+[ext_resource path="res://assets/player/default.png" type="Texture" id=5]
+[ext_resource path="res://assets/Quantico/Quantico-Bold.ttf" type="DynamicFontData" id=6]
 
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 3 )
@@ -24,6 +26,12 @@ region = Rect2( 150, 50, 50, 50 )
 [sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 3 )
 region = Rect2( 400, 0, 50, 50 )
+
+[sub_resource type="Theme" id=13]
+
+[sub_resource type="DynamicFont" id=14]
+size = 11
+font_data = ExtResource( 6 )
 
 [sub_resource type="RectangleShape2D" id=7]
 
@@ -545,6 +553,27 @@ texture_normal = SubResource( 6 )
 expand = true
 stretch_mode = 5
 
+[node name="NewHighScore" type="ColorRect" parent="."]
+visible = false
+margin_left = 178.0
+margin_top = 59.0
+margin_right = 282.0
+margin_bottom = 85.0
+rect_rotation = -30.0
+color = Color( 1, 0, 0, 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Label" type="Label" parent="NewHighScore"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = SubResource( 13 )
+custom_fonts/font = SubResource( 14 )
+text = "NEW HIGH SCORE!"
+align = 1
+valign = 1
+
 [node name="PlayerContainer" type="Node2D" parent="."]
 
 [node name="Wall" type="StaticBody2D" parent="PlayerContainer"]
@@ -572,12 +601,9 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="ColorRect" type="ColorRect" parent="PlayerContainer/Player"]
-margin_left = -15.0
-margin_top = -15.0
-margin_right = 15.0
-margin_bottom = 15.0
-color = Color( 0.278431, 0.796078, 0.737255, 1 )
+[node name="Sprite" type="Sprite" parent="PlayerContainer/Player"]
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerContainer/Player"]
 shape = SubResource( 9 )
@@ -602,6 +628,8 @@ autoplay = "OnLoad"
 anims/OnLoad = SubResource( 12 )
 anims/OnPlay = SubResource( 10 )
 anims/RESET = SubResource( 11 )
+
+[node name="Sprite" type="Sprite" parent="."]
 
 [connection signal="pressed" from="btnPlay" to="." method="_on_btnPlay_pressed"]
 [connection signal="toggled" from="btnSound" to="." method="_on_btnSound_toggled"]
