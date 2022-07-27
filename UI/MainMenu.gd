@@ -17,7 +17,10 @@ func _ready() -> void:
 	label = $HBoxScores/MarginContainer/VBoxContainer2/lblGamesPlayedValue
 	label.text = GsHelpers.format_number(GsGameState.games_played)
 
-	GsSaveManager.save_game()
+	if GsEvents.connect("avatar_changed", self, "_on_avatar_changed") != OK:
+		print(self.filename, ": Unable to connect to the avatar_changed signal")
+
+	_on_avatar_changed(GsCustomizationManager.get_avatar_details())
 
 func _physics_process(_delta: float) -> void:
 	grapple.clear_points()
@@ -46,3 +49,13 @@ func _on_btnExit_pressed() -> void:
 
 func _on_btnCustomize_pressed() -> void:
 	pass
+
+func _on_avatar_changed(new_avatar: Dictionary) -> void:
+	# Update the player sprite
+	($PlayerContainer/Player/Sprite as Sprite).region_rect.position = new_avatar.get("offset")
+	# And their grapple hook
+	($PlayerContainer/Grapple as Line2D).default_color = new_avatar.color
+	# Set the play button's background color
+	($btnPlay/ColorRect as ColorRect).color = new_avatar.get("color")
+	# Set the transition animation's color
+	($PlayGameRect as ColorRect).color = new_avatar.get("color")

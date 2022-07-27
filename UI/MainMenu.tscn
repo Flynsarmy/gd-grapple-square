@@ -4,7 +4,7 @@
 [ext_resource path="res://UI/MainMenu.gd" type="Script" id=2]
 [ext_resource path="res://assets/kenney_gameicons/Spritesheet/sheet_white1x.png" type="Texture" id=3]
 [ext_resource path="res://UI/GrappleTheme.tres" type="Theme" id=4]
-[ext_resource path="res://assets/player/default.png" type="Texture" id=5]
+[ext_resource path="res://assets/player/Squares.png" type="Texture" id=5]
 [ext_resource path="res://assets/Quantico/Quantico-Bold.ttf" type="DynamicFontData" id=6]
 
 [sub_resource type="AtlasTexture" id=2]
@@ -602,8 +602,10 @@ __meta__ = {
 }
 
 [node name="Sprite" type="Sprite" parent="PlayerContainer/Player"]
-scale = Vector2( 0.1, 0.1 )
+scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 60, 60 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerContainer/Player"]
 shape = SubResource( 9 )

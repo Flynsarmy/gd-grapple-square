@@ -9,11 +9,6 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Node",
-"class": "GSCustomizationManager",
-"language": "GDScript",
-"path": "res://Scripts/GSCustomizationManager.gd"
-}, {
 "base": "ParallaxBackground",
 "class": "GSGameBackground",
 "language": "GDScript",
@@ -50,7 +45,6 @@ _global_script_classes=[ {
 "path": "res://addons/godot-git-plugin/git_api.gdns"
 } ]
 _global_script_class_icons={
-"GSCustomizationManager": "",
 "GSGameBackground": "",
 "GSGameContinue": "",
 "GSGrappleHook": "",
@@ -70,6 +64,7 @@ config/icon="res://icon.png"
 
 GsHelpers="*res://Scripts/GSHelpers.gd"
 GsEvents="*res://Scripts/GSEvents.gd"
+GsCustomizationManager="*res://Scripts/GSCustomizationManager.gd"
 GsGameState="*res://Scripts/GSGameState.gd"
 GameBackground="*res://Map/GameBackground.tscn"
 GsSaveManager="*res://Scripts/GSSaveManager.gd"

@@ -20,35 +20,42 @@ var grapple_velocity: Vector2        # Velocity we were travelling as the grappl
 var grapple_time: float = 0          # How long we were grappling for
 var is_in_limbo: bool = false        # When the character dies, wait in limbo for a continue
 
+func _ready() -> void:
+	var avatar: Dictionary = GsCustomizationManager.get_avatar_details()
+	# Update the player sprite
+	($Sprite as Sprite).region_rect.position = avatar.get("offset")
+	# And their grapple hook
+	($GrappleHook as Line2D).default_color = avatar.color
+
 func _process(delta: float) -> void:
 	if is_in_limbo:
 		return
-	
+
 	if grappling:
 		grapple_time += delta
 
 func _physics_process(delta: float) -> void:
 	if not has_grappled:
 		return
-		
+
 	if is_in_limbo:
 		return
 
 	if grappling:
 		var angle: float = rad2deg(grapple_target_position.angle_to_point(self.global_position)) + 180
-		
+
 		var percent: float = (angle - 5.0) * 100.0 / 50.0
 
 		velocity.x = grapple_velocity.x * percent * 0.01
 	else:
 		velocity += GRAVITY * GRAVITY_DIR * delta
-		
+
 		# Horizontal air drag
 		velocity.x = max(0, velocity.x - 0.05)
-		
+
 	if velocity.x > 7:
 		velocity.x = 7
-		
+
 	self.rotation_degrees -= rotation_speed
 	ray.global_rotation = ray_default_rotation
 
@@ -56,7 +63,7 @@ func _physics_process(delta: float) -> void:
 	if (collision):
 		die();
 		#velocity -= collision.remainder
-		
+
 func continue():
 	var screen_size: Vector2 = get_viewport_rect().size
 	self.global_position = Vector2(self.global_position.x, screen_size.y / 2)
@@ -65,7 +72,7 @@ func continue():
 	self.grappling = false
 	self.is_in_limbo = false
 	ray.global_rotation = self.ray_default_rotation
-	
+
 	var grapple: GSGrappleHook = $GrappleHook
 	grapple.reset()
 
@@ -87,7 +94,7 @@ func _on_GrappleHook_begin_grapple(_gsource: Object, _gtarget: Object, gtarget_p
 
 func _on_GrappleHook_end_grapple() -> void:
 	self.velocity.y = GRAVITY * GRAVITY_DIR.y * 0.01
-	
+
 	self.rotation_speed = MAX_ROTATION_SPEED * (1 - min(self.grapple_time, 0.8))
 	self.grappling = false
 
