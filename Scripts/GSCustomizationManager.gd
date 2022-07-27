@@ -58,17 +58,22 @@ var avatar: String = "default"
 func _ready() -> void:
 	GsSaveManager.register("GSCustomizationManager", self)
 
-# Returns a Dictionary of the current avatar's price, color and spritesheet offset
-func get_avatar_details() -> Dictionary:
-	var details: Dictionary = AVATARS.get(avatar)
+# Returns a Dictionary of the specified avatar's price, color, spritesheet offset, is_owned
+# Defaults to current avatar
+func get_avatar_details(lookup_avatar: String = "") -> Dictionary:
+	if not lookup_avatar:
+		lookup_avatar = avatar
+	var details: Dictionary = AVATARS.get(lookup_avatar)
 
 	# Are we trying to swap to an avatar that doesn't exist? Swap back to the default one
 	if details == null:
-		print(self.filename, ": Details for avatar ", avatar, " missing. Swapping back to default.")
-		swap_to_avatar("default")
-		return get_avatar_details()
+		print(self.filename, ": Details for avatar ", lookup_avatar, " missing. Returning default.")
+		return get_avatar_details("default")
 
-	details["offset"] = Vector2(max(0, AVATARS.keys().find(avatar)) * AVATAR_SIZE, 0)
+	var lookup_index: int = AVATARS.keys().find(lookup_avatar)
+	details["index"] = lookup_index
+	details["offset"] = Vector2(max(0, lookup_index) * AVATAR_SIZE, 0)
+	details["is_owned"] = lookup_avatar in avatars_unlocked
 
 	return details
 
