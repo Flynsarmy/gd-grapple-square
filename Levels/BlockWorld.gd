@@ -18,7 +18,7 @@ func _ready():
 	screen_size = get_viewport_rect().size
 	if GsEvents.connect("distance_marker_reached", self, "_on_distance_marker_reached") != OK:
 		print(self.filename, ": Unable to connect to the distance_marker_reached signal")
-	
+
 func _process(_delta: float):#
 	# Make the camera follow the players horizontal movement
 	camera.position.x = player.position.x + camera_offset
@@ -30,8 +30,8 @@ func _input(event: InputEvent) -> void:
 			print(self.filename, ": An unexpected error occured when trying to switch to the MainMenu scene")
 
 func _on_Player_player_died(dead_player: GSPlayer) -> void:
-	GsGameState.save_game()
-	
+	GsSaveManager.save_game()
+
 	# Don't display continue modal if we can't afford it
 	if GsGameState.coins < GsGameState.continue_cost:
 		continues = 0
@@ -39,9 +39,9 @@ func _on_Player_player_died(dead_player: GSPlayer) -> void:
 	if continues == 0:
 		_on_GameContinue_not_continued()
 		return
-		
+
 	continues -= 1
-	
+
 	# Show the Continue popup
 	var ContinueScene: GSGameContinue = scn_continue.instance()
 	if ContinueScene.connect("continued", self, "_on_GameContinue_continued") != OK:
@@ -51,16 +51,16 @@ func _on_Player_player_died(dead_player: GSPlayer) -> void:
 
 	# Display the Continue modal
 	dead_player.get_parent().add_child(ContinueScene)
-	
+
 func _on_GameContinue_continued() -> void:
 	player.continue();
-	
+
 func _on_GameContinue_not_continued() -> void:
 	# Play teh transition animation
 	var animator: AnimationPlayer = $Camera/TransitionContainer/TransitionAnimator
 	animator.play("BackToMenu")
 	yield(animator, "animation_finished")
-	
+
 	# Change to mainmenu scene
 	if get_tree().change_scene("res://UI/MainMenu.tscn") != OK:
 		print(self.filename, ": An unexpected error occured when trying to switch to the MainMenu scene")
@@ -69,12 +69,12 @@ func _on_distance_marker_reached(number: int) -> void:
 	if number % 5 == 0:
 		var max_color = colors.size() - 1
 		var new_color = colors[min(number / 5, max_color)] # warning-ignore:integer_division
-		
+
 		# Tween our terrains color
 		var tween: Tween = $Tween
 		if tween.interpolate_property(terrains, "modulate", terrains.modulate, Color(new_color), 1):
 			var __ = tween.start()
-		
+
 		# Update the distance markers color
 		for node in $DistanceNumbers.get_children():
 			if node is GSLevelDistance:
