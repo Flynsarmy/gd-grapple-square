@@ -20,14 +20,14 @@ func _ready():
 		print(self.filename, ": Unable to connect to the distance_marker_reached signal")
 	
 func _process(_delta: float):#
-	# Switch to MainMenu on escape
-	if Input.is_action_just_pressed("menu"):
-		if get_tree().change_scene("res://UI/MainMenu.tscn") != OK:
-			print(self.filename, ": An unexpected error occured when trying to switch to the MainMenu scene")
-
 	# Make the camera follow the players horizontal movement
 	camera.position.x = player.position.x + camera_offset
 
+func _input(event: InputEvent) -> void:
+	# Switch to MainMenu on escape
+	if event.is_action_pressed("menu"):
+		if get_tree().change_scene("res://UI/MainMenu.tscn") != OK:
+			print(self.filename, ": An unexpected error occured when trying to switch to the MainMenu scene")
 
 func _on_Player_player_died(dead_player: GSPlayer) -> void:
 	GsGameState.save_game()

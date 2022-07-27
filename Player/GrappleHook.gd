@@ -34,20 +34,6 @@ func _process(_delta: float) -> void:
 	if Engine.editor_hint:
 		return
 
-	if Input.is_action_just_pressed("grapple"):
-		# On Grapple
-		if ray and ray.is_colliding():
-			begin_grapple(
-				source,
-				ray.get_collider(),
-				ray.get_collision_point(),
-				ray.global_rotation_degrees - 90
-		)
-			
-	# When not grappled
-	if Input.is_action_just_released("grapple"):
-		end_grapple()
-		
 	if self.visible:
 		# Couldn't figure out how to get this working without zeroing out the rotation/position
 		self.global_rotation_degrees = 0
@@ -59,6 +45,20 @@ func _process(_delta: float) -> void:
 		# Add the new grapple line
 		self.add_point(target_position)
 		self.add_point(source.global_position, 1)
+		
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("grapple"):
+		# On Grapple
+		if ray and ray.is_colliding():
+			begin_grapple(
+				source,
+				ray.get_collider(),
+				ray.get_collision_point(),
+				ray.global_rotation_degrees - 90
+			)
+	
+	if event.is_action_released("grapple"):
+		end_grapple()
 		
 func reset() -> void:
 	global_rotation = 0
