@@ -48,7 +48,10 @@ func _on_btnExit_pressed() -> void:
 	get_tree().quit()
 
 func _on_btnCustomize_pressed() -> void:
-	pass
+	Animator.play_backwards("OnLoad")
+	yield(Animator, "animation_finished")
+	Animator.play("HideMainPlayer", -1, 3)
+	yield(Animator, "animation_finished")
 
 func _on_avatar_changed(new_avatar: Dictionary) -> void:
 	# Update the player sprite

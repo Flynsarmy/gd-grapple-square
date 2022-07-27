@@ -17,12 +17,12 @@ var target_position: Vector2
 func _ready() -> void:
 	ray = get_node(ray_path)
 	pass # Replace with function body.
-	
+
 
 func _get_configuration_warning() -> String:
 	var warnings: PoolStringArray = PoolStringArray()
 
-	if not ray_path: 
+	if not ray_path:
 		warnings.append("%s must have its ray property set for it to function correctly." % name)
 
 	return warnings.join("\n")
@@ -38,14 +38,14 @@ func _process(_delta: float) -> void:
 		# Couldn't figure out how to get this working without zeroing out the rotation/position
 		self.global_rotation_degrees = 0
 		self.global_position = Vector2.ZERO
-		
+
 		# Remove the old grapple line
 		self.clear_points()
-		
+
 		# Add the new grapple line
 		self.add_point(target_position)
 		self.add_point(source.global_position, 1)
-		
+
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("grapple"):
 		# On Grapple
@@ -56,17 +56,17 @@ func _input(event: InputEvent) -> void:
 				ray.get_collision_point(),
 				ray.global_rotation_degrees - 90
 			)
-	
+
 	if event.is_action_released("grapple"):
 		end_grapple()
-		
+
 func reset() -> void:
 	global_rotation = 0
 	visible = false
 
 func begin_grapple(gsource: Object, gtarget: Object, gtarget_position: Vector2, angle: float) -> void:
 	emit_signal("begin_grapple", gsource, gtarget, gtarget_position, angle)
-	
+
 func end_grapple():
 	emit_signal("end_grapple")
 

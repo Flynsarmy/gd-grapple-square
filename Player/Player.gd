@@ -6,7 +6,7 @@ signal player_died(dead_player)
 
 const GRAVITY: float = 12.0
 const MAX_ROTATION_SPEED = 6         # How fast player can rotate when ending grapple
-var GRAVITY_DIR: Vector2 = ProjectSettings.get_setting("physics/2d/default_gravity_vector")
+const GRAVITY_DIR: Vector2 = Vector2.DOWN
 var velocity: Vector2 = Vector2.ZERO
 var rotation_speed: float = 0        # The amount we rotate depends on how long we held the grapple
 onready var ray: RayCast2D = $RayCast2D
