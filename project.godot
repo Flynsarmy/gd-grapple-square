@@ -45,9 +45,9 @@ _global_script_classes=[ {
 "path": "res://addons/godot-git-plugin/git_api.gdns"
 }, {
 "base": "Node2D",
-"class": "UnlockableAvatar",
+"class": "SwingingSquare",
 "language": "GDScript",
-"path": "res://UI/UnlockableAvatar.gd"
+"path": "res://UI/SwingingSquare.gd"
 } ]
 _global_script_class_icons={
 "GSGameBackground": "",
@@ -57,7 +57,7 @@ _global_script_class_icons={
 "GSPlayer": "",
 "GSTerrain": "",
 "GitAPI": "",
-"UnlockableAvatar": ""
+"SwingingSquare": ""
 }
 
 [application]

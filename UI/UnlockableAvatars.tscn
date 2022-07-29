@@ -1,6 +1,5 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://UI/UnlockableAvatar.tscn" type="PackedScene" id=1]
 [ext_resource path="res://UI/UnlockableAvatars.gd" type="Script" id=2]
 
 [node name="UnlockableAvatars" type="Control"]
@@ -23,5 +22,4 @@ color = Color( 0.94902, 0.454902, 0.407843, 1 )
 
 [node name="AvatarsContainer" type="Node2D" parent="."]
 
-[node name="UnlockableAvatar" parent="AvatarsContainer" instance=ExtResource( 1 )]
-visible = false
+[node name="Tween" type="Tween" parent="."]

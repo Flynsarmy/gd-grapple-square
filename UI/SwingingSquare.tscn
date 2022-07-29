@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://UI/SwingingSquare.gd" type="Script" id=1]
+[ext_resource path="res://assets/player/Squares.png" type="Texture" id=2]
+
+[node name="SwingingSquare" type="Node2D"]
+position = Vector2( 0, 40 )
+script = ExtResource( 1 )
+
+[node name="SourcePosition" type="Position2D" parent="."]
+
+[node name="GrappleLine" type="Line2D" parent="SourcePosition"]
+show_behind_parent = true
+width = 3.0
+
+[node name="Player" type="Node2D" parent="SourcePosition"]
+rotation = 1.5708
+
+[node name="Sprite" type="Sprite" parent="SourcePosition/Player"]
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 60, 60 )
+
+[node name="SwingTween" type="Tween" parent="."]
+
+[node name="ScaleTween" type="Tween" parent="."]
