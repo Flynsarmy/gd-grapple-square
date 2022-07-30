@@ -1,11 +1,11 @@
 extends Node2D
 
-class_name SwingingSquare
+class_name SkinDemo
 
 # Half the swing arc in radians
-export(float) var max_swing_angle: float = deg2rad(29)
-export(float) var swing_duration: float = 1.5
-export(int) var line_length: int = 275
+export(float) var max_swing_angle: float = deg2rad(15)
+export(float) var swing_duration: float = 1.2
+export(int) var line_length: int = 160
 export(Dictionary) var avatar: Dictionary = {}
 
 onready var source: Position2D = $SourcePosition

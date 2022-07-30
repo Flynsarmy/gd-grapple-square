@@ -14,16 +14,16 @@ onready var btnContinue: Button = $ModalContainer/modalBackground/btnContinue
 func _ready() -> void:
 	var lblHighScore: Label = $ModalContainer/lblHighScore
 	var lblYourScore: Label = $ModalContainer/lblYourScore
-	
+
 	btnContinue.text = 'USE ' + str(GsGameState.continue_cost)
 	lblHighScore.text = 'HIGH SCORE: ' + GsHelpers.format_number(GsGameState.high_score)
 	lblYourScore.text = 'YOUR SCORE: ' + GsHelpers.format_number(GsGameState.score)
 	_set_continue_seconds_text(seconds)
-	
+
 	var animator: AnimationPlayer = $BoxAnimator
 	animator.play("SlideUp")
 	yield(animator, "animation_finished")
-	
+
 	# Make the Continue button flash
 	animator = $ModalContainer/modalBackground/btnContinue/btnContinueAnimator
 	animator.play("Flash")
@@ -45,6 +45,6 @@ func _on_ContinueTimer_timeout() -> void:
 	if seconds == 0:
 		_on_btnClose_pressed()
 		return
-	
+
 	seconds -= 1
 	_set_continue_seconds_text(seconds)

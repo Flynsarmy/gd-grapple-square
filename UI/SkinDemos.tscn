@@ -1,0 +1,63 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://UI/SkinDemos.gd" type="Script" id=1]
+[ext_resource path="res://assets/kenney_gameicons/Spritesheet/sheet_white1x.png" type="Texture" id=2]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 2 )
+region = Rect2( 50, 0, 50, 50 )
+
+[sub_resource type="Theme" id=2]
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.94902, 0.454902, 0.407843, 1 )
+
+[node name="SkinDemos" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 59, 90 )
+script = ExtResource( 1 )
+
+[node name="Ceiling" type="ColorRect" parent="."]
+anchor_right = 1.0
+margin_bottom = 40.0
+color = Color( 0.94902, 0.454902, 0.407843, 1 )
+
+[node name="Floor" type="ColorRect" parent="."]
+visible = false
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -120.0
+color = Color( 0.94902, 0.454902, 0.407843, 1 )
+
+[node name="SkinsContainer" type="Node2D" parent="."]
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="btnBack" type="TextureButton" parent="."]
+modulate = Color( 0.94902, 0.454902, 0.407843, 1 )
+margin_left = 33.0
+margin_top = 357.0
+margin_right = 135.0
+margin_bottom = 459.0
+texture_normal = SubResource( 1 )
+expand = true
+stretch_mode = 5
+
+[node name="btnPlay" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -112.0
+margin_top = -115.0
+margin_right = 112.0
+margin_bottom = -45.0
+theme = SubResource( 2 )
+custom_styles/normal = SubResource( 3 )
+text = "PLAY"
+
+[node name="btnBuy" type="TextureButton" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0

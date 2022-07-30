@@ -45,9 +45,9 @@ _global_script_classes=[ {
 "path": "res://addons/godot-git-plugin/git_api.gdns"
 }, {
 "base": "Node2D",
-"class": "SwingingSquare",
+"class": "SkinDemo",
 "language": "GDScript",
-"path": "res://UI/SwingingSquare.gd"
+"path": "res://UI/SkinDemo.gd"
 } ]
 _global_script_class_icons={
 "GSGameBackground": "",
@@ -57,7 +57,7 @@ _global_script_class_icons={
 "GSPlayer": "",
 "GSTerrain": "",
 "GitAPI": "",
-"SwingingSquare": ""
+"SkinDemo": ""
 }
 
 [application]
@@ -99,7 +99,7 @@ version_control_plugin_name="GitAPI"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/debugger-reopener/plugin.cfg", "res://addons/gdscript_console/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/debugger-reopener/plugin.cfg" )
 
 [gdnative]
 
