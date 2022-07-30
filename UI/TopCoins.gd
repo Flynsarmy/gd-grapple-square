@@ -8,9 +8,11 @@ onready var lblCoins: Label = $CanvasLayer/MarginContainer/lblCoins
 var scrambling: bool = true
 
 func _ready() -> void:
-	if GsEvents.connect("coin_acquired", self, "_on_coin_acquired") != OK:
-		print(self.filename, ": Error connecting to coin_acquired signal.")
-		
+	if GsEvents.connect("coins_acquired", self, "_on_coins_acquired") != OK:
+		print(self.filename, ": Error connecting to coins_acquired signal.")
+	if GsEvents.connect("coins_spent", self, "_on_coins_acquired") != OK:
+		print(self.filename, ": Error connecting to coins_spent signal.")
+
 	start_scramble()
 
 func _physics_process(_delta: float) -> void:
@@ -32,5 +34,5 @@ func _on_TextAnimationTimer_timeout() -> void:
 	scrambling = false
 	lblCoins.text = GsHelpers.format_number(GsGameState.coins)
 
-func _on_coin_acquired() -> void:
+func _on_coins_acquired(_number: int) -> void:
 	start_scramble()

@@ -97,9 +97,6 @@ func maybe_unlock_avatar(id: String) -> bool:
 	GsGameState.coins -= found.get("price")
 	avatars_unlocked.append(id)
 
-	swap_to_avatar(id)
-	GsSaveManager.save_game()
-
 	return true
 
 # Swaps to the given avatar regardless of whether it's unlocked.

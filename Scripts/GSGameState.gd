@@ -7,7 +7,7 @@ var games_played: int = 0
 var continue_cost: int = 10 # warning-ignore:unused_class_variable
 
 func _ready() -> void:
-	_connect_signal("coin_acquired", self, "_on_coin_acquired")
+	_connect_signal("coins_acquired", self, "_on_coins_acquired")
 	_connect_signal("distance_marker_reached", self, "_on_distance_marker_reached")
 	_connect_signal("started_new_game", self, "_on_started_new_game")
 
@@ -15,8 +15,8 @@ func _ready() -> void:
 
 	GsSaveManager.load_game()
 
-func _on_coin_acquired() -> void:
-	coins += 1
+func _on_coins_acquired(number: int) -> void:
+	coins += number
 
 func _on_distance_marker_reached(number: int) -> void:
 	# Must use self. or setget won't work

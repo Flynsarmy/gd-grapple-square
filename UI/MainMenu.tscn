@@ -1,11 +1,11 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://UI/TopCoins.tscn" type="PackedScene" id=1]
 [ext_resource path="res://UI/MainMenu.gd" type="Script" id=2]
 [ext_resource path="res://assets/kenney_gameicons/Spritesheet/sheet_white1x.png" type="Texture" id=3]
 [ext_resource path="res://UI/GrappleTheme.tres" type="Theme" id=4]
-[ext_resource path="res://assets/player/Squares.png" type="Texture" id=5]
 [ext_resource path="res://assets/Quantico/Quantico-Bold.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://UI/SkinDemo.tscn" type="PackedScene" id=7]
 
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 3 )
@@ -33,26 +33,10 @@ region = Rect2( 400, 0, 50, 50 )
 size = 11
 font_data = ExtResource( 6 )
 
-[sub_resource type="RectangleShape2D" id=7]
-
-[sub_resource type="RectangleShape2D" id=9]
-
 [sub_resource type="Animation" id=15]
 resource_name = "HideMainPlayer"
 length = 0.25
 step = 0.05
-tracks/0/type = "value"
-tracks/0/path = NodePath("PlayerContainer:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.25 ),
-"transitions": PoolRealArray( 2, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
-}
 
 [sub_resource type="Animation" id=12]
 resource_name = "OnLoad"
@@ -160,7 +144,7 @@ tracks/3/keys = {
 "values": [ false ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("PlayerContainer:visible")
+tracks/4/path = NodePath("HBoxScores:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -172,7 +156,7 @@ tracks/4/keys = {
 "values": [ false ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("HBoxScores:visible")
+tracks/5/path = NodePath("btnExit:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -184,7 +168,7 @@ tracks/5/keys = {
 "values": [ false ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("btnExit:visible")
+tracks/6/path = NodePath("btnPlay:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -196,24 +180,12 @@ tracks/6/keys = {
 "values": [ false ]
 }
 tracks/7/type = "value"
-tracks/7/path = NodePath("btnPlay:visible")
+tracks/7/path = NodePath("PlayGameRect:visible")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
 tracks/7/enabled = true
 tracks/7/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
-tracks/8/type = "value"
-tracks/8/path = NodePath("PlayGameRect:visible")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
@@ -295,7 +267,7 @@ tracks/5/keys = {
 "values": [ true ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("PlayerContainer:visible")
+tracks/6/path = NodePath("HBoxScores:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -307,7 +279,7 @@ tracks/6/keys = {
 "values": [ true ]
 }
 tracks/7/type = "value"
-tracks/7/path = NodePath("HBoxScores:visible")
+tracks/7/path = NodePath("btnPlay:visible")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
@@ -319,7 +291,7 @@ tracks/7/keys = {
 "values": [ true ]
 }
 tracks/8/type = "value"
-tracks/8/path = NodePath("btnPlay:visible")
+tracks/8/path = NodePath("PlayGameRect:visible")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/imported = false
@@ -328,10 +300,10 @@ tracks/8/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ true ]
+"values": [ false ]
 }
 tracks/9/type = "value"
-tracks/9/path = NodePath("PlayGameRect:visible")
+tracks/9/path = NodePath("btnPlay:rect_position")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/imported = false
@@ -340,10 +312,10 @@ tracks/9/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ false ]
+"values": [ Vector2( 260, 190 ) ]
 }
 tracks/10/type = "value"
-tracks/10/path = NodePath("btnPlay:rect_position")
+tracks/10/path = NodePath("btnCustomize:rect_position")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/imported = false
@@ -352,10 +324,10 @@ tracks/10/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 260, 190 ) ]
+"values": [ Vector2( 500, 202.5 ) ]
 }
 tracks/11/type = "value"
-tracks/11/path = NodePath("btnCustomize:rect_position")
+tracks/11/path = NodePath("btnSound:rect_position")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/imported = false
@@ -364,39 +336,15 @@ tracks/11/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 500, 202.5 ) ]
+"values": [ Vector2( 70, 202.5 ) ]
 }
 tracks/12/type = "value"
-tracks/12/path = NodePath("btnSound:rect_position")
+tracks/12/path = NodePath("HBoxScores:modulate")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/imported = false
 tracks/12/enabled = true
 tracks/12/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 70, 202.5 ) ]
-}
-tracks/13/type = "value"
-tracks/13/path = NodePath("HBoxScores:modulate")
-tracks/13/interp = 1
-tracks/13/loop_wrap = true
-tracks/13/imported = false
-tracks/13/enabled = true
-tracks/13/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ) ]
-}
-tracks/14/type = "value"
-tracks/14/path = NodePath("PlayerContainer:modulate")
-tracks/14/interp = 1
-tracks/14/loop_wrap = true
-tracks/14/imported = false
-tracks/14/enabled = true
-tracks/14/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
@@ -499,10 +447,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 260.0
-margin_top = 190.0
-margin_right = 460.0
-margin_bottom = 290.0
+margin_left = -100.0
+margin_top = -50.0
+margin_right = 100.0
+margin_bottom = 50.0
 rect_min_size = Vector2( 75, 75 )
 mouse_default_cursor_shape = 2
 texture_normal = SubResource( 2 )
@@ -524,10 +472,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 70.0
-margin_top = 202.5
-margin_right = 220.0
-margin_bottom = 277.5
+margin_left = -290.0
+margin_top = -37.5
+margin_right = -140.0
+margin_bottom = 37.5
 mouse_default_cursor_shape = 2
 toggle_mode = true
 texture_normal = SubResource( 3 )
@@ -550,10 +498,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 500.0
-margin_top = 202.5
-margin_right = 650.0
-margin_bottom = 277.5
+margin_left = 140.0
+margin_top = -37.5
+margin_right = 290.0
+margin_bottom = 37.5
 mouse_default_cursor_shape = 2
 texture_normal = SubResource( 4 )
 expand = true
@@ -604,41 +552,9 @@ text = "NEW HIGH SCORE!"
 align = 1
 valign = 1
 
-[node name="PlayerContainer" type="Node2D" parent="."]
-
-[node name="Wall" type="StaticBody2D" parent="PlayerContainer"]
-position = Vector2( 573, 39 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerContainer/Wall"]
-shape = SubResource( 7 )
-
-[node name="PinJoint2D" type="PinJoint2D" parent="PlayerContainer"]
-position = Vector2( 576, 38 )
-node_a = NodePath("../Wall")
-node_b = NodePath("../Player")
-
-[node name="Grapple" type="Line2D" parent="PlayerContainer"]
-width = 3.0
-default_color = Color( 0.278431, 0.796078, 0.737255, 1 )
-
-[node name="Player" type="RigidBody2D" parent="PlayerContainer"]
-position = Vector2( 549, 119 )
-rotation = 0.296706
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="PlayerContainer/Player"]
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 5 )
-region_enabled = true
-region_rect = Rect2( 0, 0, 60, 60 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerContainer/Player"]
-shape = SubResource( 9 )
+[node name="SkinDemo" parent="." instance=ExtResource( 7 )]
+position = Vector2( 592, 40 )
+line_length = 90
 
 [node name="PlayGameRect" type="ColorRect" parent="."]
 visible = false
@@ -646,10 +562,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 260.0
-margin_top = 190.0
-margin_right = 290.0
-margin_bottom = 220.0
+margin_left = -100.0
+margin_top = -50.0
+margin_right = -70.0
+margin_bottom = -20.0
 color = Color( 0.278431, 0.796078, 0.737255, 1 )
 __meta__ = {
 "_edit_group_": true

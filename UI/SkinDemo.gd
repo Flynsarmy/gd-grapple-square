@@ -6,12 +6,15 @@ class_name SkinDemo
 export(float) var max_swing_angle: float = deg2rad(15)
 export(float) var swing_duration: float = 1.2
 export(int) var line_length: int = 160
+export(String) var avatar_id: String = "" # warning-ignore:unused_class_variable
 export(Dictionary) var avatar: Dictionary = {}
 
 onready var source: Position2D = $SourcePosition
 onready var player: Node2D = $SourcePosition/Player
 onready var grapple: Line2D = $SourcePosition/GrappleLine
 onready var swing_tween: Tween = $SwingTween
+# The sprite is manipulated by parent classes
+onready var sprite: Sprite = $SourcePosition/Player/Sprite # warning-ignore:unused_class_variable
 
 func _ready() -> void:
 	randomize()
@@ -66,7 +69,6 @@ func swing(is_swinging_forwards: bool) -> void:
 	swing(!is_swinging_forwards)
 
 func set_avatar_scale(new_scale: float) -> void:
-	var sprite: Sprite = $SourcePosition/Player/Sprite
 	var scale_tween: Tween = $ScaleTween
 
 	var __ = scale_tween.interpolate_property(
